@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>偶像瑞士制比賽</title>
+    <link rel="icon" href="./img/nogiicon.png" type="image/png">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="./js/bootstrap.bundle.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .match-container {
+            margin-top: 20px;
+        }
+
+        .idol-img {
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+            margin: 10px;
+            border: 3px solid transparent;
+            transition: 0.2s;
+        }
+
+        .idol-img:hover {
+            border-color: blue;
+        }
+
+        .result-btn {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>偶像瑞士制比賽</h1>
+    <div id="match-container" class="match-container"></div>
+    <div id="ranking"></div>
+
+    <script>
+        let idols = Array.from({ length: 29 }, (_, i) => (
+            {
+                id: i,
+                name: `Idol ${i + 1}`,
+                points: 0,
+                opponents: [],
+                img: `https://via.placeholder.com/150?text=Idol+${i + 1}`
+            }));
+
+        let round = 1;
+        let matches = [];
+        let currentMatchIndex = 0;
+        const need_play_around = Math.ceil(getBaseLog(2, idols.length) + 1)
+        function getBaseLog(x, y) {
+            return Math.log(y) / Math.log(x);
+        }
+        function startRound() {
+            if (round > need_play_around) {
+                showRanking();
+                return;
+            }
+
+            idols.sort((a, b) => b.points - a.points);
+            matches = [];
+            let paired = new Set();
+
+            for (let i = 0; i < idols.length; i++) {
+                let idol1 = idols[i];
+
+                if (paired.has(idol1.id)) continue;
+
+                for (let j = i + 1; j < idols.length; j++) {
+                    let idol2 = idols[j];
+
+                    if (!paired.has(idol2.id) && !idol1.opponents.includes(idol2.id)) {
+                        idol1.opponents.push(idol2.id);
+                        idol2.opponents.push(idol1.id);
+                        paired.add(idol1.id);
+                        paired.add(idol2.id);
+                        matches.push([idol1, idol2]);
+                        break;
+                    }
+                }
+            }
+
+            let unpaired = idols.find(idol => !paired.has(idol.id));
+            if (unpaired) {
+                unpaired.points += 3;
+            }
+
+            currentMatchIndex = 0;
+            displayMatch();
+        }
+
+        function displayMatch() {
+            if (currentMatchIndex >= matches.length) {
+                round++;
+                startRound();
+                return;
+            }
+
+            let [idol1, idol2] = matches[currentMatchIndex];
+            let matchContainer = document.getElementById("match-container");
+            let percent = ((round - 1) * (idols.length / 2) + currentMatchIndex + 1) / (need_play_around * (idols.length / 2)) * 100
+            matchContainer.innerHTML = `
+            <h2>${percent.toFixed(2)}%</h2>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: ${percent}%"></div>
+                </div>
+                <h2>第 ${round} 輪 - 第 ${currentMatchIndex + 1} 場比賽</h2>
+                <div>
+                    <img src="./img/nogiicon.png" class="idol-img" onclick="selectWinner(${idol1.id}, ${idol2.id}, 1)">
+                    <img src="./img/nogiicon.png" class="idol-img" onclick="selectWinner(${idol1.id}, ${idol2.id}, 2)">
+                </div>
+                <button class="result-btn" onclick="selectWinner(${idol1.id}, ${idol2.id}, 0)">平手</button>
+            `;
+        }
+
+        function selectWinner(id1, id2, result) {
+            let idol1 = idols.find(idol => idol.id === id1);
+            let idol2 = idols.find(idol => idol.id === id2);
+
+            if (result === 1) {
+                idol1.points += 3;
+            } else if (result === 2) {
+                idol2.points += 3;
+            } else {
+                idol1.points += 1;
+                idol2.points += 1;
+            }
+
+            currentMatchIndex++;
+            displayMatch();
+        }
+
+        function showRanking() {
+            idols.sort((a, b) => b.points - a.points);
+            let rankingHTML = "<h2>最終排名</h2><ol>";
+            idols.forEach(idol => {
+                rankingHTML += `<li>${idol.name} - ${idol.points} 分</li>`;
+            });
+            rankingHTML += "</ol>";
+            document.getElementById("ranking").innerHTML = rankingHTML;
+        }
+
+        startRound();
+    </script>
+</body>
+
+</html>
