@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sakamichi Sort</title>
-    <link rel="icon" href="./img/nogiicon.png" type="image/png">
+    <link rel="icon" href="./img/hinataicon.png" type="image/png">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <script src="./js/bootstrap.bundle.js"></script>
 
@@ -27,7 +27,7 @@
             /* Stay on top */
             top: 0;
             left: 0;
-            background-color: #7d2982;
+            background-color: #5bbee4;
             /* Black*/
             overflow-x: hidden;
             /* Disable horizontal scroll */
@@ -65,14 +65,14 @@
         .openbtn {
             font-size: 20px;
             cursor: pointer;
-            background-color: #7d2982;
+            background-color: #5bbee4;
             color: white;
             padding: 10px 15px;
             border: none;
         }
 
         .openbtn:hover {
-            background-color: #7d2982;
+            background-color: #5bbee4;
         }
 
         /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
@@ -111,8 +111,8 @@
             <a href="./hinatazaka46.html">Hinatazaka46</a>
         </div>
 
-        <div id="main" class="container-fluid  border-bottom border-dark border-3" style="background-color: #7d2982">
-            <button class="openbtn" onclick="openNav()">&#9776; Nogizaka46 Sorter</button>
+        <div id="main" class="container-fluid  border-bottom border-dark border-3" style="background-color: #5bbee4">
+            <button class="openbtn" onclick="openNav()">&#9776; Hinatazaka46 Sorter</button>
         </div>
 
     </header>
@@ -121,7 +121,7 @@
         <section id="choose_member">
 
             <div class="text-center ">
-                <h1>Nogizaka46 Sort</h1>
+                <h1>Hinatazaka46 Sort</h1>
                 <hr>
                 <div>
                     <p id="choose_people" class="fs-1">選擇<span>0</span>人</p>
@@ -130,7 +130,7 @@
             <hr>
             <div class="border border-danger mx-auto my-3 d-flex justify-content-center align-items-center">
                 <input type="checkbox" class="checkall" id="AllSelect">
-                <label for="AllSelect" style="font-size: 23px;">乃木坂46全員</label>
+                <label for="AllSelect" style="font-size: 23px;">日向坂46全員</label>
             </div>
 
             <div class="accordion accordion-flush mx-auto my-3 border border-danger show" id="accordionFlush1">
@@ -139,8 +139,8 @@
 
                         <div class="d-flex justify-content-center">
                             <div class="w-100 d-flex justify-content-center align-items-center">
-                                <input type="checkbox" class="checkall" id="Generation3">
-                                <label for="Generation3" style="font-size: 23px;">3期生</label>
+                                <input type="checkbox" class="checkall" id="Generation1">
+                                <label for="Generation1" style="font-size: 23px;">1期生</label>
                             </div>
                             <button class="accordion-button collapsed ms-auto p-3" style="width: 50px;" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true"
@@ -154,66 +154,41 @@
                         data-bs-parent="#accordionFlush1">
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g3" id="RiriaItou" value="RiriaItou">
-                            <label for="RiriaItou" style="font-size: 23px;">
-                                伊藤 理々杏
+                            <input type="checkbox" class="g1" id="ShihoKato" value="ShihoKato">
+                            <label for="ShihoKato" style="font-size: 23px;">
+                                加藤 史帆
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g3" id="RenkaIwamoto" value="RenkaIwamoto">
-                            <label for="RenkaIwamoto" style="font-size: 23px;">
-                                岩本 蓮加
+                            <input type="checkbox" class="g1" id="KumiSasaki" value="KumiSasaki">
+                            <label for="KumiSasaki" style="font-size: 23px;">
+                                佐々木 久美
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g3" id="MinamiUmezawa" value="MinamiUmezawa">
-                            <label for="MinamiUmezawa" style="font-size: 23px;">
-                                梅澤 美波
+                            <input type="checkbox" class="g1" id="MireiSasaki" value="MireiSasaki">
+                            <label for="MireiSasaki" style="font-size: 23px;">
+                                佐々木 美玲
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g3" id="ShioriKubo" value="ShioriKubo">
-                            <label for="ShioriKubo" style="font-size: 23px;">
-                                久保 史緒里
+                            <input type="checkbox" class="g1" id="ManaTakase" value="ManaTakase">
+                            <label for="ManaTakase" style="font-size: 23px;">
+                                高瀨 愛奈
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g3" id="KaedeSato" value="KaedeSato">
-                            <label for="KaedeSato" style="font-size: 23px;">
-                                佐藤 楓
-                            </label>
-                        </div>
-
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g3" id="RenoNakamura" value="RenoNakamura">
-                            <label for="RenoNakamura" style="font-size: 23px;">
-                                中村 麗乃
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g3" id="AyanoYoshidaChristie" value="AyanoYoshidaChristie">
-                            <label for="AyanoYoshidaChriste" style="font-size: 20px;">
-                                吉田綾乃クリスティー
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g3" id="YukiYoda" value="YukiYoda">
-                            <label for="YukiYoda" style="font-size: 23px;">
-                                与田 祐希
+                            <input type="checkbox" class="g1" id="MeiHigashimura" value="MeiHigashimura">
+                            <label for="MeiHigashimura" style="font-size: 23px;">
+                                東村 芽依
                             </label>
                         </div>
 
@@ -222,15 +197,15 @@
 
             </div>
 
-            <!-- 四期 -->
+            <!--二期 -->
             <div class="accordion accordion-flush mx-auto my-3 border border-danger show" id="accordionFlush2">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingTwo">
 
                         <div class="d-flex justify-content-center">
                             <div class="w-100 d-flex justify-content-center align-items-center">
-                                <input type="checkbox" class="checkall" id="Generation4">
-                                <label for="Generation4" style="font-size: 23px;">4期生</label>
+                                <input type="checkbox" class="checkall" id="Generation2">
+                                <label for="Generation2" style="font-size: 23px;">2期生</label>
                             </div>
                             <button class="accordion-button collapsed ms-auto p-3" style="width: 50px;" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="true"
@@ -244,129 +219,80 @@
                         data-bs-parent="#accordionFlush2">
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g4" id="SakuraEndo" value="SakuraEndo">
-                            <label for="SakraEndo" style="font-size: 23px;">
-                                遠藤 さくら
+                            <input type="checkbox" class="g2" id="MikuKanemura" value="MikuKanemura">
+                            <label for="MikuKanemura" style="font-size: 23px;">
+                                金村 美玖
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g4" id="HarukaKaki" value="HarukaKaki">
-                            <label for="HarukaKaki" style="font-size: 23px;">
-                                賀喜 遙香
+                            <input type="checkbox" class="g2" id="HinaKawata" value="HinaKawata">
+                            <label for="HinaKawata" style="font-size: 23px;">
+                                河田 陽菜
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g4" id="SayaKanagawa" value="SayaKanagawa">
-                            <label for="SayaKanagawa" style="font-size: 23px;">
-                                金川 紗耶
+                            <input type="checkbox" class="g2" id="NaoKosaka" value="NaoKosaka">
+                            <label for="NaoKosaka" style="font-size: 23px;">
+                                小坂 菜緒
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g4" id="HarukaKuromi" value="HarukaKuromi">
-                            <label for="HarukaKuromi" style="font-size: 23px;">
-                                黑見 明香
+                            <input type="checkbox" class="g2" id="SuzukaTomita" value="SuzukaTomita">
+                            <label for="SuzukaTomita" style="font-size: 23px;">
+                                富田 鈴花
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g4" id="RikaSato" value="RikaSato">
-                            <label for="RikaSato" style="font-size: 23px;">
+                            <input type="checkbox" class="g2" id="AkariNibu" value="AkariNibu">
+                            <label for="AkariNibu" style="font-size: 23px;">
 
-                                佐藤 璃果
-
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g4" id="YunaShibata" value="YunaShibata">
-                            <label for="YunaShibata" style="font-size: 23px;">
-
-                                柴田 柚菜
+                                丹生 明里
 
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g4" id="MayuTamura" value="MayuTamura">
-                            <label for="MayuTamura" style="font-size: 23px;">
+                            <input type="checkbox" class="g2" id="HiyoriHamagishi" value="HiyoriHamagishi">
+                            <label for="HiyoriHamagishi" style="font-size: 23px;">
 
-                                田村 真佑
-
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g4" id="AyameTsutsui" value="AyameTsutsui">
-                            <label for="AyameTsutsui" style="font-size: 23px;">
-
-                                筒井 あやめ
+                                濱岸 ひより
 
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g4" id="RunaHayashi" value="RunaHayashi">
-                            <label for="RunaHayashi" style="font-size: 23px;">
+                            <input type="checkbox" class="g2" id="KonokaMatsuda" value="KonokaMatsuda">
+                            <label for="KonokaMatsuda" style="font-size: 23px;">
 
-                                林 瑠奈
-
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g4" id="MiyuMatsuo" value="MiyuMatsuo">
-                            <label for="MiyuMatsuo" style="font-size: 23px;">
-
-                                松尾 美佑
+                                松田好花
 
                             </label>
                         </div>
 
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g4" id="MioYakubo" value="MioYakubo">
-                            <label for="MioYakubo" style="font-size: 23px;">
-
-                                矢久保 美緒
-
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g4" id="NaoYumiki" value="NaoYumiki">
-                            <label for="NaoYumiki" style="font-size: 23px;">
-
-                                弓木 奈於
-
-                            </label>
-                        </div>
                     </div>
                 </div>
 
             </div>
 
-            <!-- 五期 -->
+            <!-- 三期 -->
             <div class="accordion accordion-flush mx-auto my-3 border border-danger show" id="accordionFlush3">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingThree">
 
                         <div class="d-flex justify-content-center">
                             <div class="w-100 d-flex justify-content-center align-items-center">
-                                <input type="checkbox" class="checkall" id="Generation5">
-                                <label for="Generation5" style="font-size: 23px;">5期生</label>
+                                <input type="checkbox" class="checkall" id="Generation3">
+                                <label for="Generation3" style="font-size: 23px;">3期生</label>
                             </div>
                             <button class="accordion-button collapsed ms-auto p-3" style="width: 50px;" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="true"
@@ -380,108 +306,158 @@
                         data-bs-parent="#accordionFlush3">
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g5" id="MaoIoki" value="MaoIoki">
-                            <label for="Maoioki" style="font-size: 23px;">
-                                五百城 茉央
+                            <input type="checkbox" class="g3" id="HinanoKamimura" value="HinanoKamimura">
+                            <label for="HinanoKamimura" style="font-size: 23px;">
+                                上村 ひなの
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g5" id="TeresaIkeda" value="TeresaIkeda">
-                            <label for="TeresaIkeda" style="font-size: 23px;">
-                                池田 瑛紗
+                            <input type="checkbox" class="g3" id="MikuniTakahashi" value="MikuniTakahashi">
+                            <label for="MikuniTakahashi" style="font-size: 23px;">
+                                高橋 未來虹
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g5" id="MikuIchinose" value="MikuIchinose">
-                            <label for="MikuIchinose" style="font-size: 23px;">
+                            <input type="checkbox" class="g3" id="MarieMorimoto" value="MarieMorimoto">
+                            <label for="MarieMorimoto" style="font-size: 23px;">
 
-                                一ノ瀬 美空
-
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g5" id="NagiInoue" value="NagiInoue">
-                            <label for="NagiInoue" style="font-size: 23px;">
-                                井上 和
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g5" id="HinaOkamoto" value="HinaOkamoto">
-                            <label for="HinaOkamoto" style="font-size: 23px;">
-
-                                岡本 姬奈
+                                森本 茉莉
 
                             </label>
                         </div>
 
                         <div
                             class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g5" id="AyaOgawa" value="AyaOgawa">
-                            <label for="AyaOgawa" style="font-size: 23px;">
-
-                                小川 彩
-
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g5" id="IrohaOkuda" value="IrohaOkuda">
-                            <label for="IrohaOkuda" style="font-size: 23px;">
-
-                                奥田 いろは
-
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g5" id="SakuraKawazaki" value="SakuraKawazaki">
-                            <label for="SakuraKawazaki" style="font-size: 23px;">
-
-
-                                川﨑 桜
-
-
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g5" id="SatsukiSugawara" value="SatsukiSugawara">
-                            <label for="SatsukiSugawara" style="font-size: 23px;">
-
-                                菅原 咲月
-
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g5" id="NaoTomisato" value="NaoTomisato">
-                            <label for="NaoTomisato" style="font-size: 23px;">
-                                冨里 奈央
-                            </label>
-                        </div>
-
-                        <div
-                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
-                            <input type="checkbox" class="g5" id="ArunoNakanishi" value="ArunoNakanishi">
-                            <label for="ArunoNakanishi" style="font-size: 23px;">
-                                中西 アルノ
+                            <input type="checkbox" class="g3" id="HaruyoYamaguchi" value="HaruyoYamaguchi">
+                            <label for="HaruyoYamaguchi" style="font-size: 23px;">
+                                山口 陽世
                             </label>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- 四期 -->
+            <div class="accordion accordion-flush mx-auto my-3 border border-danger show" id="accordionFlush4">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingFour">
+
+                        <div class="d-flex justify-content-center">
+                            <div class="w-100 d-flex justify-content-center align-items-center">
+                                <input type="checkbox" class="checkall" id="Generation4">
+                                <label for="Generation4" style="font-size: 23px;">4期生</label>
+                            </div>
+                            <button class="accordion-button collapsed ms-auto p-3" style="width: 50px;" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="true"
+                                aria-controls="flush-collapseOne">
+                            </button>
+
+                        </div>
+
+                    </h2>
+                    <div id="flush-collapseFour" class="accordion-collapse" aria-labelledby="flush-headingFour"
+                        data-bs-parent="#accordionFlush4">
+                        <div
+                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
+                            <input type="checkbox" class="g4" id="TamakiIshizuka" value="TamakiIshizuka">
+                            <label for="TamakiIshizuka" style="font-size: 23px;">
+                                石塚 瑤季
+                            </label>
+                        </div>
+
+                        <div
+                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
+                            <input type="checkbox" class="g4" id="NanamiKonishi" value="NanamiKonishi">
+                            <label for="NanamiKonishi" style="font-size: 23px;">
+                                小西 夏菜実
+                            </label>
+                        </div>
+
+                        <div
+                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
+                            <input type="checkbox" class="g4" id="RioShimizu" value="RioShimizu">
+                            <label for="RioShimizu" style="font-size: 23px;">
+
+                                清水 理央
+                            </label>
+                        </div>
+
+                        <div
+                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
+                            <input type="checkbox" class="g4" id="YokoShogenji" value="YokoShogenji">
+                            <label for="YokoShogenji" style="font-size: 23px;">
+                                正源司 陽子
+                            </label>
+                        </div>
+
+                        <div
+                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
+                            <input type="checkbox" class="g4" id="KirariTakeuchi" value="KirariTakeuchi">
+                            <label for="KirariTakeuchi" style="font-size: 23px;">
+                                竹內 希來里
+                            </label>
+                        </div>
+
+                        <div
+                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
+                            <input type="checkbox" class="g4" id="HonokaHirao" value="HonokaHirao">
+                            <label for="KirariTakeuchi" style="font-size: 23px;">
+                                平尾 帆夏
+                            </label>
+                        </div>
+
+                        <div
+                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
+                            <input type="checkbox" class="g4" id="MitsukiHiraoka" value="MitsukiHiraoka">
+                            <label for="MitsukiHiraoka" style="font-size: 23px;">
+                                平岡 海月
+                            </label>
+                        </div>
+
+
+                        <div
+                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
+                            <input type="checkbox" class="g4" id="KahoFujishima" value="KahoFujishima">
+                            <label for="KahoFujishima" style="font-size: 23px;">
+                                藤嶌 果步
+                            </label>
+                        </div>
+
+                        <div
+                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
+                            <input type="checkbox" class="g4" id="SumireMiyachi" value="SumireMiyachi">
+                            <label for="SumireMiyachi" style="font-size: 23px;">
+                                宮地 すみれ
+                            </label>
+                        </div>
+
+                        <div
+                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
+                            <input type="checkbox" class="g4" id="HarukaYamashita" value="HarukaYamashita">
+                            <label for="HarukaYamashita" style="font-size: 23px;">
+                                山下 葉留花
+                            </label>
+                        </div>
+
+                        <div
+                            class="border border-danger accordion-body w-100 d-flex justify-content-center align-items-center">
+                            <input type="checkbox" class="g4" id="RinaWatanabe" value="RinaWatanabe">
+                            <label for="RinaWatanabe" style="font-size: 23px;">
+                                渡辺 莉奈
+                            </label>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
 
             <button id="sort" class="btn" onclick="sorted()"
                 style="background-color: #7d2982; border-radius: 50px; position: fixed; bottom: 50px; left: 50%; transform: translateX(-50%); width: 100px; height:100px"
@@ -489,28 +465,43 @@
                 Sort
             </button>
 
-    </div>
-    </section>
-    <!-- 二選一遊戲畫面 -->
-    <section id="game" style="display: none;">
 
-    </section>
-    <!-- 結果 -->
-    <section id="top_5" style="display: none; margin-top:10px;">
+        </section>
+        <!-- 二選一遊戲畫面 -->
+        <section id="game" style="display: none;">
+
+        </section>
+        <!-- 結果 -->
+        <section id="top_5" style="display: none; margin-top:10px;">
 
 
-    </section>
-    <section id="result" style="display: none;">
+        </section>
+        <section id="result" style="display: none;">
 
-    </section>
+        </section>
     </div>
     <script>
         const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(.checkall)')
+        const g1 = document.querySelectorAll('.g1')
+        const g2 = document.querySelectorAll('.g2')
         const g3 = document.querySelectorAll('.g3')
         const g4 = document.querySelectorAll('.g4')
-        const g5 = document.querySelectorAll('.g5')
         var checked_member = 0
         let checked_girl = []
+        //一期生按鈕
+        Generation1.addEventListener('change', (event) => {
+            g1.forEach(checkbox => {
+                checkbox.checked = event.target.checked
+                checkbox.dispatchEvent(new Event('change')); // 手動觸發 change 事件
+            })
+        })
+        //二期生按鈕
+        Generation2.addEventListener('change', (event) => {
+            g2.forEach(checkbox => {
+                checkbox.checked = event.target.checked
+                checkbox.dispatchEvent(new Event('change')); // 手動觸發 change 事件
+            })
+        })
         //三期生按鈕
         Generation3.addEventListener('change', (event) => {
             g3.forEach(checkbox => {
@@ -525,13 +516,7 @@
                 checkbox.dispatchEvent(new Event('change')); // 手動觸發 change 事件
             })
         })
-        //五期生按鈕
-        Generation5.addEventListener('change', (event) => {
-            g5.forEach(checkbox => {
-                checkbox.checked = event.target.checked
-                checkbox.dispatchEvent(new Event('change')); // 手動觸發 change 事件
-            })
-        })
+
         //全部成員按鈕
         AllSelect.addEventListener('change', (event) => {
             checkboxes.forEach(checkbox => {
@@ -539,14 +524,17 @@
                 checkbox.dispatchEvent(new Event('change')); // 手動觸發 change 事件
             })
             if (event.target.checked) {
+                Generation1.checked = true
+                Generation2.checked = true
                 Generation3.checked = true
                 Generation4.checked = true
-                Generation5.checked = true
             }
             else {
+                Generation1.checked = false
+                Generation2.checked = false
                 Generation3.checked = false
                 Generation4.checked = false
-                Generation5.checked = false
+
             }
         })
         checkboxes.forEach(checkbox => {
@@ -570,7 +558,7 @@
                 }
                 if (checked_member >= 5) {
                     sort.disabled = false
-                    document.getElementById('sort').style.backgroundColor = '#7d2982'
+                    document.getElementById('sort').style.backgroundColor = '#5bbee4'
                 }
                 else {
                     sort.disabled = true
@@ -668,7 +656,7 @@
             let count = ((round - 1) * Math.floor(checked_girl.length / 2.0) + currentMatchIndex + 1)
             let percent = count / (need_play_around * (checked_girl.length / 2)) * 100
             game.innerHTML = `
-            <h1 class="text-center">Nogizaka46 Sort</h1>
+            <h1 class="text-center">Hinatazaka46 Sort</h1>
             <hr>
             <div id="game_corner" class=" border border-danger " style="margin: 0 450px">
                 <div class="text-center border">
@@ -685,7 +673,7 @@
                         <p id="name1">${document.getElementById(idol1[0]).nextElementSibling.innerText}</p>
                     </div>
                     <div class="text-center">
-                        <img class="w-100" id="img1" src="./img/nogizaka46/${idol1[0]}.jpg" onclick="selectWinner('${idol1[0]}','${idol2[0]}' ,1)">
+                        <img class="w-100" id="img1" src="./img/hinatazaka46/${idol1[0]}.jpg" onclick="selectWinner('${idol1[0]}','${idol2[0]}' ,1)">
                     </div>
                 </div>
                 <div class="col-6 ">
@@ -693,7 +681,7 @@
                         <p id="name2">${document.getElementById(idol2[0]).nextElementSibling.innerText}</p>
                     </div>
                     <div class="text-center">
-                        <img class="w-100" id="img2" src="./img/nogizaka46/${idol2[0]}.jpg" onclick="selectWinner('${idol1[0]}','${idol2[0]}' ,2)">
+                        <img class="w-100" id="img2" src="./img/hinatazaka46/${idol2[0]}.jpg" onclick="selectWinner('${idol1[0]}','${idol2[0]}' ,2)">
                     </div>
                 </div>
             </div>
@@ -735,7 +723,7 @@
                     <td colspan="4" class="text-center ">第一名</td>
                 </tr>
                 <tr>
-                    <td colspan="4" class="text-center"><img width="100px" class='img-fluid' src="./img//nogizaka46/${checked_girl[0][0]}.jpg"
+                    <td colspan="4" class="text-center"><img width="100px" class='img-fluid' src="./img//hinatazaka46/${checked_girl[0][0]}.jpg"
                             alt=""></td>
                 </tr>
                 <tr class='d-none d-lg-table-row'>
@@ -747,10 +735,10 @@
 
             top_5table += `
                     <tr>
-                        <td class="text-center"><img width="100px" class='img-fluid' src="./img/nogizaka46/${checked_girl[1][0]}.jpg" alt=""></td>
-                        <td class="text-center"><img width="100px" class='img-fluid' src="./img/nogizaka46/${checked_girl[2][0]}.jpg" alt=""></td>
-                        <td class="text-center"><img width="100px" class='img-fluid' src="./img/nogizaka46/${checked_girl[3][0]}.jpg" alt=""></td>
-                        <td class="text-center"><img width="100px" class='img-fluid' src="./img/nogizaka46/${checked_girl[4][0]}.jpg" alt=""></td>
+                        <td class="text-center"><img width="100px" class='img-fluid' src="./img/hinatazaka46/${checked_girl[1][0]}.jpg" alt=""></td>
+                        <td class="text-center"><img width="100px" class='img-fluid' src="./img/hinatazaka46/${checked_girl[2][0]}.jpg" alt=""></td>
+                        <td class="text-center"><img width="100px" class='img-fluid' src="./img/hinatazaka46/${checked_girl[3][0]}.jpg" alt=""></td>
+                        <td class="text-center"><img width="100px" class='img-fluid' src="./img/hinatazaka46/${checked_girl[4][0]}.jpg" alt=""></td>
                     </tr>
                     `
 
@@ -770,7 +758,7 @@
                 rankingHTML += `
                 <tr>
                     <td>${index + 1}</td>
-                    <td class='d-none d-lg-block' ><img style="width:100px" src='./img/nogizaka46/${idol[0]}.jpg'></td>
+                    <td class='d-none d-lg-block' ><img style="width:100px" src='./img/hinatazaka46/${idol[0]}.jpg'></td>
                     <td>${document.getElementById(idol[0]).nextElementSibling.innerText}</td>
                     <td>${idol[1]}</td>
                 </tr>
