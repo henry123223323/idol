@@ -598,10 +598,18 @@
         function getBaseLog(x, y) {
             return Math.log(y) / Math.log(x);
         }
+        function Quarter_Final() {
+            checked_girl.sort((a, b) => b[1] - a[1]);
+            let quatarfinal_array = checked_girl.slice(0, 8)
+            console.log(quatarfinal_array)
+        }
         function startRound() {
             var need_play_around = Math.max(1, Math.ceil(getBaseLog(2, checked_girl.length) + 2));
 
             if (round > need_play_around) {
+                if (checked_girl.length > 10) {
+                    Quarter_Final();
+                }
                 showRanking();
                 return;
             }
@@ -632,7 +640,7 @@
 
             let unpaired = checked_girl.find(idol => !paired.has(idol[0]) && !idol[3]);
             if (unpaired) {
-                unpaired[1] += 3;
+                unpaired[1] += 2;
                 unpaired[3] = true;  // 記錄這個人已經獲得過 bye
             }
 
@@ -651,7 +659,7 @@
             var need_play_around = Math.max(1, Math.ceil(getBaseLog(2, checked_girl.length) + 2));
 
             let [idol1, idol2] = matches[currentMatchIndex];
-            let count = ((round - 1) * (checked_girl.length / 2) + currentMatchIndex + 1)
+            let count = ((round - 1) * Math.floor(checked_girl.length / 2.0) + currentMatchIndex + 1)
             let percent = count / (need_play_around * (checked_girl.length / 2)) * 100
             game.innerHTML = `
             <h1 class="text-center">Nogizaka46 Sort</h1>
@@ -714,13 +722,28 @@
 
         function showRanking() {
             checked_girl.sort((a, b) => b[1] - a[1]);
-            let rankingHTML = "<h2>最終排名</h2><ol>";
-            checked_girl.forEach(idol => {
-                rankingHTML += `<li>${idol[0]} - ${idol[1]} 分
-                    <img src='./img/nogizaka46/${idol[0]}.jpg'>
-                </li>`;
-            });
-            rankingHTML += "</ol>";
+            let rankingHTML = `
+            <h2>最終排名</h2><ol>
+            <table class='table'>
+                <tr>
+                    <th>ranking</th>
+                    <th>圖片</th>
+                    <th>Name</th>
+                    <th>point</th>
+                </tr>
+                `
+            checked_girl.forEach((idol, index) => {
+                rankingHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td><img style="width:100px" src='./img/nogizaka46/${idol[0]}.jpg'></td>
+                    <td>${document.getElementById(idol[0]).nextElementSibling.innerText}</td>
+                    <td>${idol[1]}</td>
+                </tr>
+
+                `
+            })
+            rankingHTML += "</table>";
             result.innerHTML = rankingHTML;
             choose_member.style.display = 'none';
             game.style.display = 'none';
