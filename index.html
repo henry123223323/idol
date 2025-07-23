@@ -141,7 +141,7 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             const urlParams = new URLSearchParams(window.location.search);
-            let group = urlParams.get('group');
+            let group = urlParams.get('group') || 'n46';
 
             console.log("從 URL 參數獲取的值:");
             console.log("團體:", group);
