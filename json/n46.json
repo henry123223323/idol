@@ -1,0 +1,221 @@
+[
+    [
+        {
+            "Generation": "三期生",
+            "En_Gen": "ki_3"
+        },
+        {
+            "Name": "伊藤理々杏",
+            "En_Name": "Riria_Ito",
+            "Img_Path": "./img/nogizaka46/RiriaItou.jpg"
+        },
+        {
+            "Name": "岩本蓮加",
+            "En_Name": "Renka_Iwamoto",
+            "Img_Path": "./img/nogizaka46/RenkaIwamoto.jpg"
+        },
+        {
+            "Name": "久保史緒里",
+            "En_Name": "Shiori_Kubo",
+            "Img_Path": "./img/nogizaka46/ShioriKubo.jpg"
+        },
+        {
+            "Name": "梅澤美波",
+            "En_Name": "Minami_Umezawa",
+            "Img_Path": "./img/nogizaka46/MinamiUmezawa.jpg"
+        },
+        {
+            "Name": "吉田綾乃クリスティー",
+            "En_Name": "Ayano_Yoshida_Christie",
+            "Img_Path": "./img/nogizaka46/AyanoYoshidaChristie.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "四期生",
+            "En_Gen": "ki_4"
+        },
+        {
+            "Name": "遠藤さくら",
+            "En_Name": "Sakura_Endo",
+            "Img_Path": "./img/nogizaka46/SakuraEndo.jpg"
+        },
+        {
+            "Name": "賀喜遥香",
+            "En_Name": "Haruka_Kaki",
+            "Img_Path": "./img/nogizaka46/HarukaKaki.jpg"
+        },
+        {
+            "Name": "金川紗耶",
+            "En_Name": "Saya_Kanagawa",
+            "Img_Path": "./img/nogizaka46/SayaKanagawa.jpg"
+        },
+        {
+            "Name": "黒見明香",
+            "En_Name": "Haruka_Kuromi",
+            "Img_Path": "./img/nogizaka46/HarukaKuromi.jpg"
+        },
+        {
+            "Name": "佐藤璃果",
+            "En_Name": "Rika_Sato",
+            "Img_Path": "./img/nogizaka46/RikaSato.jpg"
+        },
+        {
+            "Name": "柴田柚菜",
+            "En_Name": "Yuna_Shibata",
+            "Img_Path": "./img/nogizaka46/YunaShibata.jpg"
+        },
+        {
+            "Name": "田村真佑",
+            "En_Name": "Mayu_Tamura",
+            "Img_Path": "./img/nogizaka46/MayuTamura.jpg"
+        },
+        {
+            "Name": "筒井あやめ",
+            "En_Name": "Ayame_Tsutsui",
+            "Img_Path": "./img/nogizaka46/AyameTsutsui.jpg"
+        },
+        {
+            "Name": "林瑠奈",
+            "En_Name": "Runa_Hayashi",
+            "Img_Path": "./img/nogizaka46/RunaHayashi.jpg"
+        },
+        {
+            "Name": "矢久保美緒",
+            "En_Name": "Mio_Yakubo",
+            "Img_Path": "./img/nogizaka46/MioYakubo.jpg"
+        },
+        {
+            "Name": "弓木奈於",
+            "En_Name": "Nao_Yumiki",
+            "Img_Path": "./img/nogizaka46/NaoYumiki.jpg"
+        },
+        {
+            "Name": "松尾美佑",
+            "En_Name": "Miyu_Matsuo",
+            "Img_Path": "./img/nogizaka46/MiyuMatsuo.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "五期生",
+            "En_Gen": "ki_5"
+        },
+        {
+            "Name": "一ノ瀬美空",
+            "En_Name": "Miku_Ichinose",
+            "Img_Path": "./img/nogizaka46/MikuIchinose.jpg"
+        },
+        {
+            "Name": "池田瑛紗",
+            "En_Name": "Teresa_Ikeda",
+            "Img_Path": "./img/nogizaka46/TeresaIkeda.jpg"
+        },
+        {
+            "Name": "井上和",
+            "En_Name": "Nagi_Inoue",
+            "Img_Path": "./img/nogizaka46/NagiInoue.jpg"
+        },
+        {
+            "Name": "五百城茉央",
+            "En_Name": "Mao_Ioki",
+            "Img_Path": "./img/nogizaka46/MaoIoki.jpg"
+        },
+        {
+            "Name": "岡本姫奈",
+            "En_Name": "Hina_Okamoto",
+            "Img_Path": "./img/nogizaka46/HinaOkamoto.jpg"
+        },
+        {
+            "Name": "川﨑桜",
+            "En_Name": "Sakura_Kawasaki",
+            "Img_Path": "./img/nogizaka46/SakuraKawazaki.jpg"
+        },
+        {
+            "Name": "中西アルノ",
+            "En_Name": "Aruno_Nakanishi",
+            "Img_Path": "./img/nogizaka46/ArunoNakanishi.jpg"
+        },
+        {
+            "Name": "小川彩",
+            "En_Name": "Aya_Ogawa",
+            "Img_Path": "./img/nogizaka46/AyaOgawa.jpg"
+        },
+        {
+            "Name": "奥田いろは",
+            "En_Name": "Iroha_Okuda",
+            "Img_Path": "./img/nogizaka46/IrohaOkuda.jpg"
+        },
+        {
+            "Name": "冨里奈央",
+            "En_Name": "Nao_Tomisato",
+            "Img_Path": "./img/nogizaka46/NaoTomisato.jpg"
+        },
+        {
+            "Name": "菅原咲月",
+            "En_Name": "Satsuki_Sugawara",
+            "Img_Path": "./img/nogizaka46/SatsukiSugawara.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "六期生",
+            "En_Gen": "ki_6"
+        },
+        {
+            "Name": "愛宕心響",
+            "En_Name": "Kokone_Atago",
+            "Img_Path": "./img/nogizaka46/KokoneAtago.jpg"
+        },
+        {
+            "Name": "大越ひなの",
+            "En_Name": "Hinano_Okoshi",
+            "Img_Path": "./img/nogizaka46/HinanoOkoshi.jpg"
+        },
+        {
+            "Name": "小津玲奈",
+            "En_Name": "Reina_Ozu",
+            "Img_Path": "./img/nogizaka46/ReinaOzu.jpg"
+        },
+        {
+            "Name": "海邊朱莉",
+            "En_Name": "Akari_Kaibe",
+            "Img_Path": "./img/nogizaka46/AkariKaibe.jpg"
+        },
+        {
+            "Name": "川端晃菜",
+            "En_Name": "Hina_Kawabata",
+            "Img_Path": "./img/nogizaka46/HinaKawabata.jpg"
+        },
+        {
+            "Name": "鈴木佑捺",
+            "En_Name": "Yuna_Suzuki",
+            "Img_Path": "./img/nogizaka46/YuunaSuzuki.jpg"
+        },
+        {
+            "Name": "瀬戸口心月",
+            "En_Name": "Mitsuki_Setoguchi",
+            "Img_Path": "./img/nogizaka46/MitsukiSetoguchi.jpg"
+        },
+        {
+            "Name": "長嶋凛桜",
+            "En_Name": "Rio_Nagashima",
+            "Img_Path": "./img/nogizaka46/RioNagashima.jpg"
+        },
+        {
+            "Name": "増田三莉音",
+            "En_Name": "Mirine_Masuda",
+            "Img_Path": "./img/nogizaka46/MirineMasuda.jpg"
+        },
+        {
+            "Name": "森平麗心",
+            "En_Name": "Urumi_Morihira",
+            "Img_Path": "./img/nogizaka46/UrumiMorihira.jpg"
+        },
+        {
+            "Name": "矢田萌華",
+            "En_Name": "Moeka_Yada",
+            "Img_Path": "./img/nogizaka46/MoekaYada.jpg"
+        }
+    ]
+]

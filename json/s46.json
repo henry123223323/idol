@@ -1,0 +1,185 @@
+[
+    [
+        {
+            "Generation": "二期生",
+            "En_Gen": "sk_2"
+        },
+        {
+            "Name": "井上梨名",
+            "En_Name": "Rina_Inoue",
+            "Img_Path": "./img/sakurazaka46/RinaInoue.jpg"
+        },
+        {
+            "Name": "遠藤光莉",
+            "En_Name": "Hikari_Endo",
+            "Img_Path": "./img/sakurazaka46/HikariEndo.jpg"
+        },
+        {
+            "Name": "大園玲",
+            "En_Name": "Rei_Ozono",
+            "Img_Path": "./img/sakurazaka46/ReiOzono.jpg"
+        },
+        {
+            "Name": "大沼晶保",
+            "En_Name": "Akiho_Onuma",
+            "Img_Path": "./img/sakurazaka46/AkihoOnuma.jpg"
+        },
+        {
+            "Name": "幸阪茉里乃",
+            "En_Name": "Marino_Kousaka",
+            "Img_Path": "./img/sakurazaka46/MarinoKousaka.jpg"
+        },
+        {
+            "Name": "武元唯衣",
+            "En_Name": "Yui_Takemoto",
+            "Img_Path": "./img/sakurazaka46/YuiTakemoto.jpg"
+        },
+        {
+            "Name": "田村保乃",
+            "En_Name": "Hono_Tamura",
+            "Img_Path": "./img/sakurazaka46/HonoTamura.jpg"
+        },
+        {
+            "Name": "藤吉夏鈴",
+            "En_Name": "Karin_Fujiyoshi",
+            "Img_Path": "./img/sakurazaka46/KarinFujiyoshi.jpg"
+        },
+        {
+            "Name": "増本綺良",
+            "En_Name": "Kira_Masumoto",
+            "Img_Path": "./img/sakurazaka46/KiraMasumoto.jpg"
+        },
+        {
+            "Name": "松田里奈",
+            "En_Name": "Rina_Matsuda",
+            "Img_Path": "./img/sakurazaka46/RinaMatsuda.jpg"
+        },
+        {
+            "Name": "森田ひかる",
+            "En_Name": "Hikaru_Morita",
+            "Img_Path": "./img/sakurazaka46/HikaruMorita.jpg"
+        },
+        {
+            "Name": "守屋麗奈",
+            "En_Name": "Rena_Moriya",
+            "Img_Path": "./img/sakurazaka46/RenaMoriya.jpg"
+        },
+        {
+            "Name": "山﨑天",
+            "En_Name": "Ten_Yamasaki",
+            "Img_Path": "./img/sakurazaka46/TenYamasaki.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "三期生",
+            "En_Gen": "sk_3"
+        },
+        {
+            "Name": "石森璃花",
+            "En_Name": "Rika_Ishimori",
+            "Img_Path": "./img/sakurazaka46/RikaIshimori.jpg"
+        },
+        {
+            "Name": "遠藤理子",
+            "En_Name": "Riko_Endo",
+            "Img_Path": "./img/sakurazaka46/RikoEndo.jpg"
+        },
+        {
+            "Name": "小田倉麗奈",
+            "En_Name": "Reina_Odakura",
+            "Img_Path": "./img/sakurazaka46/ReinaOdakura.jpg"
+        },
+        {
+            "Name": "小島凪紗",
+            "En_Name": "Nagisa_Kojima",
+            "Img_Path": "./img/sakurazaka46/NagisaKojima.jpg"
+        },
+        {
+            "Name": "谷口愛理",
+            "En_Name": "Airi_Taniguchi",
+            "Img_Path": "./img/sakurazaka46/AiriTaniguchi.jpg"
+        },
+        {
+            "Name": "中嶋優月",
+            "En_Name": "Yuzuki_Nakashima",
+            "Img_Path": "./img/sakurazaka46/YuzukiNakashima.jpg"
+        },
+        {
+            "Name": "的野美青",
+            "En_Name": "Mio_Matono",
+            "Img_Path": "./img/sakurazaka46/MioMatono.jpg"
+        },
+        {
+            "Name": "向井純葉",
+            "En_Name": "Haruha_Mukai",
+            "Img_Path": "./img/sakurazaka46/HaruhaMukai.jpg"
+        },
+        {
+            "Name": "村井優",
+            "En_Name": "Yu_Murai",
+            "Img_Path": "./img/sakurazaka46/YuMurai.jpg"
+        },
+        {
+            "Name": "村山美羽",
+            "En_Name": "Miu_Murayama",
+            "Img_Path": "./img/sakurazaka46/MiuMurayama.jpg"
+        },
+        {
+            "Name": "山下瞳月",
+            "En_Name": "Shizuki_Yamashita",
+            "Img_Path": "./img/sakurazaka46/ShizukiYamashita.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "四期生",
+            "En_Gen": "sk_4"
+        },
+        {
+            "Name": "淺井戀乃未",
+            "En_Name": "Asai_Konomi",
+            "Img_Path": "./img/sakurazaka46/Asai_Konomi.jpg"
+        },
+        {
+            "Name": "稻熊日奈",
+            "En_Name": "Inaguma_Hina",
+            "Img_Path": "./img/sakurazaka46/Inaguma_Hina.jpg"
+        },
+        {
+            "Name": "勝又春",
+            "En_Name": "Katsumata_Haru",
+            "Img_Path": "./img/sakurazaka46/Katsumata_Haru.jpg"
+        },
+        {
+            "Name": "佐藤愛櫻",
+            "En_Name": "Sato_Neo",
+            "Img_Path": "./img/sakurazaka46/Sato_Neo.jpg"
+        },
+        {
+            "Name": "中川智尋",
+            "En_Name": "Nakagawa_Chihiro",
+            "Img_Path": "./img/sakurazaka46/Nakagawa_Chihiro.jpg"
+        },
+        {
+            "Name": "松本和子",
+            "En_Name": "Matsumoto_Wako",
+            "Img_Path": "./img/sakurazaka46/Matsumoto_Wako.jpg"
+        },
+        {
+            "Name": "目黑陽色",
+            "En_Name": "Meguro_Hiiro",
+            "Img_Path": "./img/sakurazaka46/Meguro_Hiiro.jpg"
+        },
+        {
+            "Name": "山川宇衣",
+            "En_Name": "Yamakawa_Ui",
+            "Img_Path": "./img/sakurazaka46/Yamakawa_Ui.jpg"
+        },
+        {
+            "Name": "山田桃實",
+            "En_Name": "Yamada_Momomi",
+            "Img_Path": "./img/sakurazaka46/Yamada_Momomi.jpg"
+        }
+    ]
+]
