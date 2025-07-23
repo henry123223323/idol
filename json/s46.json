@@ -112,8 +112,8 @@
         },
         {
             "Name": "向井純葉",
-            "En_Name": "Haruha_Mukai",
-            "Img_Path": "./img/sakurazaka46/HaruhaMukai.jpg"
+            "En_Name": "Itoha_Mukai",
+            "Img_Path": "./img/sakurazaka46/Itoha_Mukai.jpg"
         },
         {
             "Name": "村井優",
@@ -142,7 +142,7 @@
             "Img_Path": "./img/sakurazaka46/Asai_Konomi.jpg"
         },
         {
-            "Name": "稻熊日奈",
+            "Name": "稲熊ひな",
             "En_Name": "Inaguma_Hina",
             "Img_Path": "./img/sakurazaka46/Inaguma_Hina.jpg"
         },
@@ -177,7 +177,7 @@
             "Img_Path": "./img/sakurazaka46/Yamakawa_Ui.jpg"
         },
         {
-            "Name": "山田桃實",
+            "Name": "山田桃実",
             "En_Name": "Yamada_Momomi",
             "Img_Path": "./img/sakurazaka46/Yamada_Momomi.jpg"
         }
