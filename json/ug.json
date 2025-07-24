@@ -1,0 +1,118 @@
+[
+    [
+        {
+            "Generation": "Uni Girls",
+            "En_Gen": "uni_girls"
+        },
+        {
+            "Name": "妮妮",
+            "En_Name": "Nini",
+            "Img_Path": "./img/uni_girls/Nini.jpg"
+        },
+        {
+            "Name": "Yuki",
+            "En_Name": "Yuki",
+            "Img_Path": "./img/uni_girls/Yuki.jpg"
+        },
+        {
+            "Name": "Yovia",
+            "En_Name": "Yovia",
+            "Img_Path": "./img/uni_girls/Yovia.jpg"
+        },
+        {
+            "Name": "Mina",
+            "En_Name": "Mina",
+            "Img_Path": "./img/uni_girls/Mina.jpg"
+        },
+        {
+            "Name": "詩詩",
+            "En_Name": "Shihshih",
+            "Img_Path": "./img/uni_girls/Shihshih.jpg"
+        },
+        {
+            "Name": "芮絲",
+            "En_Name": "Iris",
+            "Img_Path": "./img/uni_girls/Iris.jpg"
+        },
+        {
+            "Name": "少少",
+            "En_Name": "Jane",
+            "Img_Path": "./img/uni_girls/Jane.jpg"
+        },
+        {
+            "Name": "賴賴",
+            "En_Name": "Wenzi",
+            "Img_Path": "./img/uni_girls/Wenzi.jpg"
+        },
+        {
+            "Name": "曼萍",
+            "En_Name": "Manping",
+            "Img_Path": "./img/uni_girls/Manping.jpg"
+        },
+        {
+            "Name": "瑟七",
+            "En_Name": "Seul",
+            "Img_Path": "./img/uni_girls/Seul.jpg"
+        },
+        {
+            "Name": "Joy",
+            "En_Name": "Joy",
+            "Img_Path": "./img/uni_girls/Joy.jpg"
+        },
+        {
+            "Name": "小美",
+            "En_Name": "Maggie",
+            "Img_Path": "./img/uni_girls/Maggie.jpg"
+        },
+        {
+            "Name": "斐棋",
+            "En_Name": "Faye",
+            "Img_Path": "./img/uni_girls/Faye.jpg"
+        },
+        {
+            "Name": "柔一",
+            "En_Name": "Rouyi",
+            "Img_Path": "./img/uni_girls/Rouyi.jpg"
+        },
+        {
+            "Name": "一七",
+            "En_Name": "Bubble",
+            "Img_Path": "./img/uni_girls/Bubble.jpg"
+        },
+        {
+            "Name": "包子",
+            "En_Name": "Baozi",
+            "Img_Path": "./img/uni_girls/Baozi.jpg"
+        },
+        {
+            "Name": "侯莉娜",
+            "En_Name": "HouRina",
+            "Img_Path": "./img/uni_girls/HouRina.jpg"
+        },
+        {
+            "Name": "千紘",
+            "En_Name": "Chihiro",
+            "Img_Path": "./img/uni_girls/Chihiro.jpg"
+        },
+        {
+            "Name": "希美",
+            "En_Name": "Nozomi",
+            "Img_Path": "./img/uni_girls/Nozomi.jpg"
+        },
+        {
+            "Name": "趙娟週",
+            "En_Name": "YeonJu",
+            "Img_Path": "./img/uni_girls/YeonJu.jpg"
+        },
+        {
+            "Name": "文慧真",
+            "En_Name": "Hyejin",
+            "Img_Path": "./img/uni_girls/Hyejin.jpg"
+        },
+        {
+            "Name": "安惠志",
+            "En_Name": "Hyeji",
+            "Img_Path": "./img/uni_girls/Hyeji.jpg"
+        }
+    ]
+]

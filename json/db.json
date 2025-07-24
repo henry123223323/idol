@@ -1,0 +1,184 @@
+[
+    [
+        {
+            "Generation": "Dragon Beauties",
+            "En_Gen": "Dragon_Beauties"
+        },
+        {
+            "Name": "琪琪",
+            "En_Name": "Kiki",
+            "Img_Path": "./img/dragon_beauties/Kiki.jpg"
+        },
+        {
+            "Name": "星岑",
+            "En_Name": "Lavender",
+            "Img_Path": "./img/dragon_beauties/Lavender.jpg"
+        },
+        {
+            "Name": "米奇",
+            "En_Name": "Mickey",
+            "Img_Path": "./img/dragon_beauties/Mickey.jpg"
+        },
+        {
+            "Name": "心璇",
+            "En_Name": "Shen",
+            "Img_Path": "./img/dragon_beauties/Shen.jpg"
+        },
+        {
+            "Name": "馬妹",
+            "En_Name": "Ma",
+            "Img_Path": "./img/dragon_beauties/Ma.jpg"
+        },
+        {
+            "Name": "小映",
+            "En_Name": "Ying",
+            "Img_Path": "./img/dragon_beauties/Ying.jpg"
+        },
+        {
+            "Name": "口水",
+            "En_Name": "Trina",
+            "Img_Path": "./img/dragon_beauties/Trina.jpg"
+        },
+        {
+            "Name": "LIKE",
+            "En_Name": "LIKE",
+            "Img_Path": "./img/dragon_beauties/LIKE.jpg"
+        },
+        {
+            "Name": "張晴",
+            "En_Name": "Ching",
+            "Img_Path": "./img/dragon_beauties/Ching.jpg"
+        },
+        {
+            "Name": "芮妮",
+            "En_Name": "Renee",
+            "Img_Path": "./img/dragon_beauties/Renee.jpg"
+        },
+        {
+            "Name": "霖霖",
+            "En_Name": "Lin",
+            "Img_Path": "./img/dragon_beauties/Lin.jpg"
+        },
+        {
+            "Name": "小蛙",
+            "En_Name": "Wa",
+            "Img_Path": "./img/dragon_beauties/Wa.jpg"
+        },
+        {
+            "Name": "Queena",
+            "En_Name": "Queena",
+            "Img_Path": "./img/dragon_beauties/Queena.jpg"
+        },
+        {
+            "Name": "蘿拉",
+            "En_Name": "Laura",
+            "Img_Path": "./img/dragon_beauties/Laura.jpg"
+        },
+        {
+            "Name": "寧寧",
+            "En_Name": "Ning",
+            "Img_Path": "./img/dragon_beauties/Ning.jpg"
+        },
+        {
+            "Name": "小珍奶",
+            "En_Name": "BubbleTea",
+            "Img_Path": "./img/dragon_beauties/BubbleTea.jpg"
+        },
+        {
+            "Name": "詩雅",
+            "En_Name": "Miyabi",
+            "Img_Path": "./img/dragon_beauties/Miyabi.jpg"
+        },
+        {
+            "Name": "璦昀",
+            "En_Name": "Yumi",
+            "Img_Path": "./img/dragon_beauties/Yumi.jpg"
+        },
+        {
+            "Name": "沛沛",
+            "En_Name": "Pei",
+            "Img_Path": "./img/dragon_beauties/Pei.jpg"
+        },
+        {
+            "Name": "林襄",
+            "En_Name": "Mizuki",
+            "Img_Path": "./img/dragon_beauties/Mizuki.jpg"
+        },
+        {
+            "Name": "李多慧",
+            "En_Name": "Dahye",
+            "Img_Path": "./img/dragon_beauties/Dahye.jpg"
+        },
+        {
+            "Name": "菲菲",
+            "En_Name": "Aviva",
+            "Img_Path": "./img/dragon_beauties/Aviva.jpg"
+        },
+        {
+            "Name": "Yuri",
+            "En_Name": "Yuri",
+            "Img_Path": "./img/dragon_beauties/Yuri.jpg"
+        },
+        {
+            "Name": "柳柳",
+            "En_Name": "Yuxy",
+            "Img_Path": "./img/dragon_beauties/Yuxy.jpg"
+        },
+        {
+            "Name": "靜靜",
+            "En_Name": "Yuna",
+            "Img_Path": "./img/dragon_beauties/Yuna.jpg"
+        },
+        {
+            "Name": "佩霓",
+            "En_Name": "Penny",
+            "Img_Path": "./img/dragon_beauties/Penny.jpg"
+        },
+        {
+            "Name": "群群",
+            "En_Name": "Keke",
+            "Img_Path": "./img/dragon_beauties/Keke.jpg"
+        },
+        {
+            "Name": "金娜妍",
+            "En_Name": "NaYeon",
+            "Img_Path": "./img/dragon_beauties/NaYeon.jpg"
+        },
+        {
+            "Name": "權喜原",
+            "En_Name": "HeeWon",
+            "Img_Path": "./img/dragon_beauties/HeeWon.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "Dragon_Beauties練習生",
+            "En_Gen": "db_trainees"
+        },
+        {
+            "Name": "美奈",
+            "En_Name": "Remina",
+            "Img_Path": "./img/dragon_beauties/Remina.jpg"
+        },
+        {
+            "Name": "姵宸",
+            "En_Name": "Peichen",
+            "Img_Path": "./img/dragon_beauties/Peichen.jpg"
+        },
+        {
+            "Name": "掌沛",
+            "En_Name": "Piiyu",
+            "Img_Path": "./img/dragon_beauties/Piiyu.jpg"
+        },
+        {
+            "Name": "瑄瑄",
+            "En_Name": "Aries",
+            "Img_Path": "./img/dragon_beauties/Aries.jpg"
+        },
+        {
+            "Name": "貝拉",
+            "En_Name": "Bella",
+            "Img_Path": "./img/dragon_beauties/Bella.jpg"
+        }
+    ]
+]

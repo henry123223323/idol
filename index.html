@@ -5,14 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sakamichi Sort</title>
-    <!--引用bootstrap5 css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!--引用bootstrap5 js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
-    <!--引用jQuery3.6.3 js -->
     <script src="https://code.jquery.com/jquery-3.6.3.js"
         integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <style>
@@ -91,13 +88,19 @@
         <a href="./index.html?group=n46">Nogizaka46</a>
         <a href="./index.html?group=s46">Sakurazaka46</a>
         <a href="./index.html?group=h46">Hinatazaka46</a>
+        <a href="./index.html?group=sakamichi">Sakamichi</a>
+        <hr>
         <a href="./index.html?group=fa">Fubon Angels</a>
         <a href="./index.html?group=rg">Rakuten Girls</a>
         <a href="./index.html?group=ps">Passion Sisters</a>
+        <a href="./index.html?group=db">Dragon Beauties</a>
+        <a href="./index.html?group=ug">Uni Girls</a>
+        <a href="./index.html?group=ws">WING STARS</a>
+        <a href="./index.html?group=cpbl">CPBL</a>
     </div>
 
-    <div id="main" class="container-fluid  border-bottom border-dark border-3" style="background-color: #7d2982">
-        <button class="openbtn" onclick="openNav()">&#9776; Sakamichi Sorter</button>
+    <div id="main" class="container-fluid border-bottom border-dark border-3" style="background-color: #7d2982">
+        <button class="openbtn" onclick="openNav()">&#9776; Idol Sorter</button>
     </div>
 
     <div id="initialize" class="container">
@@ -107,28 +110,24 @@
     <div id="content"></div>
     <div id="result"></div>
 
-    <!-- 按鈕區域 -->
     <div class="button-area" style="text-align: center; margin-top: 20px;">
         <button id="startButton" disabled style="
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #6c5ce7;
-            color: white;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        " onclick="Game_start()">
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background-color: #6c5ce7;
+                color: white;
+                border: none;
+                font-size: 16px;
+                cursor: pointer;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            " onclick="Game_start()">
             開始
         </button>
     </div>
-    </div>
-
-
 
     <script>
-        var idol_list = [];
+        var idol_list = {}; // 將 idol_list 改為物件，用來儲存所有團體的資料
         let choose_member = [];
         let round = 1;
         let matches = [];
@@ -141,136 +140,203 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             const urlParams = new URLSearchParams(window.location.search);
-            let group = urlParams.get('group') || 'n46';
+            let group = urlParams.get('group') || 'n46'; // 預設載入 Nogizaka46
 
             console.log("從 URL 參數獲取的值:");
             console.log("團體:", group);
-            if (group == 'n46') {
-                $("#group_title").text('Nogizaka46');
-                $("#main,.openbtn,.sidebar").css('background-color', "purple")
-                $("#group_title").css('color', 'purple')
-            }
-            else if (group == 's46') {
-                $("#group_title").text('Sakurazaka46');
-                $("#main,.openbtn,.sidebar").css('background-color', "pink")
-                $("#group_title").css('color', 'pink')
 
-            }
-            else if (group == 'h46') {
-                $("#group_title").text('Hinatazaka46');
-                $("#main,.openbtn,.sidebar").css('background-color', "cyan")
-                $("#group_title").css('color', 'cyan')
-                $(".openbtn").css('color', 'black');
+            // 設定團體標題和顏色
+            const groupConfigs = {
+                'n46': { title: 'Nogizaka46', color: 'purple' },
+                's46': { title: 'Sakurazaka46', color: 'pink' },
+                'h46': { title: 'Hinatazaka46', color: 'cyan', openBtnColor: 'black' },
+                'sakamichi': { title: 'Sakamichi46', color: 'cyan', openBtnColor: 'black' },
+                'rg': { title: 'Rakuten Girls', color: 'red', openBtnColor: 'black' },
+                'fa': { title: 'Fubon Angels', color: 'cyan', openBtnColor: 'black' },
+                'ps': { title: 'Passion Sister', color: 'yellow', openBtnColor: 'black' },
+                'db': { title: 'Dragon Beauties', color: 'red', openBtnColor: 'black' },
+                'ug': { title: 'Uni Girls', color: 'orange', openBtnColor: 'black' },
+                'ws': { title: 'WING STARS', color: 'green', openBtnColor: 'black' },
+                'cpbl': { title: 'CPBL GIRLS', color: 'green', openBtnColor: 'black' }
+            };
 
-            }
-            else if (group == 'rg') {
-                $("#group_title").text('Rakuten Girls');
-                $("#main,.openbtn,.sidebar").css('background-color', "red")
-                $("#group_title").css('color', 'red')
-                $(".openbtn").css('color', 'black');
-            }
-            else if (group == 'fa') {
-                $("#group_title").text('Fubon_Angels');
-                $("#main,.openbtn,.sidebar").css('background-color', "cyan")
-                $("#group_title").css('color', 'cyan')
-                $(".openbtn").css('color', 'black');
-            }
-            else if (group == 'ps') {
-                $("#group_title").text('Passion Sister');
-                $("#main,.openbtn,.sidebar").css('background-color', "yellow")
-                $("#group_title").css('color', 'yellow')
-                $(".openbtn").css('color', 'black');
-            }
-
-
-            let group_url = `./json/${group}.json`;
-            fetch(group_url)
-                .then(Response => Response.json())
-                .then(data => {
-                    console.log(data);
-                    idol_list = data;
-
-                    console.log(idol_list);
-
-
-                    $("#content,#result").hide();
-                    initialize_html += `<div class="accordion accordion-flush" id="accordionFlushExample">
-    `;
-                    idol_list.forEach((gen, index) => {
-                        console.log(gen, index);
-                        initialize_html += `
-        <div class="accordion-item">
-                    <h2 class="accordion-header d-flex" id="flush-heading${index}">
-                        <span class="d-flex align-items-center" onclick="event.stopPropagation();">
-                            <input type="checkbox" class="me-2" id="${gen[0].En_Gen}" onchange='Generation_change("${gen[0].En_Gen}")'>
-                            <label for="${gen[0].En_Gen}" class="mb-0">${gen[0].Generation}</label>
-                        </span>
-                        <button class="accordion-button collapsed" style="width:80%" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapse${index}" aria-expanded="false" aria-controls="flush-collapse${index}">
-                        
-
-                        </button>
-                    </h2>
-                    <div id="flush-collapse${index}" class="accordion-collapse collapse" aria-labelledby="flush-heading${index}"
-                        data-bs-parent="#accordionFlushExample">
-                        `
-
-                        for (let i = 1; i < gen.length; i++) {
-                            initialize_html += `
-                    <div class="accordion-body">
-                        <input type="checkbox" name="" id="${gen[i].En_Name}">    
-                        <label for="${gen[i].En_Name}">${gen[i].Name}</label>                    
-                    </div>
-                    `
-                        }
-
-                        initialize_html += `</div></div>`
-
-                    })
-
-
-                    initialize_html += `
-            </div>
-        `;
-
-                    $("#initialize").append(initialize_html);
-
-                    $("input").change(function () {
-                        $('#h1_people').text(`你已經選擇${member_choose()}人`)
-                        if (member_choose() >= 5) {
-                            $('#startButton').prop('disabled', false); // 啟用按鈕
-                        } else {
-                            $('#startButton').prop('disabled', true); // 禁用按鈕
-                        }
-                    })
-                })
-        });
-        function Generation_change(gen) {//處理選擇期別全選
-
-            console.log(gen);
-            let gen_checked = $(`#${gen}`).prop('checked');
-            console.log(gen_checked);
-            let gen_idx = 0;
-            while (idol_list[gen_idx][0].En_Gen != gen) {
-                gen_idx++;
-            }
-            console.log(gen_idx);
-
-            idol_list[gen_idx].forEach(member => {
-                if (!gen_checked) {
-                    $(`#${member.En_Name}`).prop('checked', false);
+            const config = groupConfigs[group];
+            if (config) {
+                $("#group_title").text(config.title).css('color', config.color);
+                $("#main, .openbtn, .sidebar").css('background-color', config.color);
+                if (config.openBtnColor) {
+                    $(".openbtn").css('color', config.openBtnColor);
                 }
-                else {
-                    $(`#${member.En_Name}`).prop('checked', true);
+            }
 
-                }
+            // 定義所有要載入的團體識別碼
+            const allGroupsToFetch = ['n46', 's46', 'h46', 'rg', 'fa', 'ps', 'db', 'ug', 'ws'];
+
+            // 根據選擇的 group 決定要載入哪些 JSON
+            let groupsToLoad = [];
+            if (group === 'cpbl') {
+                groupsToLoad = ['fa', 'db', 'rg', 'ps', 'ug', 'ws']; // CPBL 載入所有啦啦隊
+            }
+            else if (group === 'sakamichi') {
+                groupsToLoad = ['n46', 's46', 'h46'];
+
+            }
+            else {
+                groupsToLoad = [group]; // 其他團體只載入自己的 JSON
+            }
+
+            // 創建一個 Promise 陣列，每個 Promise 對應一個 fetch 請求
+            const fetchPromises = groupsToLoad.map(groupKey => {
+                return fetch(`./json/${groupKey}.json`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status} for ${groupKey}.json`);
+                        }
+                        return response.json();
+                    })
+                    .catch(error => {
+                        console.error(`Error fetching data for ${groupKey}:`, error);
+                        return null; // 載入失敗時返回 null
+                    });
             });
 
+            // 使用 Promise.all 等待所有請求完成
+            Promise.all(fetchPromises)
+                .then(results => {
+                    // 合併所有結果到 idol_list 物件中
+                    // 如果是 CPBL，則將所有隊伍的資料合併到 idol_list['cpbl'] 陣列中
+                    // 如果是其他團體，則將其資料直接賦值給 idol_list[group]
+                    if (group === 'cpbl') {
+                        idol_list['cpbl'] = [];
+                        results.forEach(data => {
+                            if (data) {
+                                // 每個 JSON 檔案的資料都是一個陣列，其中每個元素都是一個期別（陣列）
+                                // 對於 CPBL，我們可能想將所有期別的成員展平
+                                data.forEach(gen => {
+                                    idol_list['cpbl'].push(gen); // 將每個隊伍的期別直接加入到 cpbl 的資料中
+                                });
+                            }
+                        });
+                    }
+                    else if (group === 'sakamichi') {
+                        idol_list['sakamichi'] = [];
+                        results.forEach(data => {
+                            if (data) {
+                                // 每個 JSON 檔案的資料都是一個陣列，其中每個元素都是一個期別（陣列）
+                                // 對於 CPBL，我們可能想將所有期別的成員展平
+                                data.forEach(gen => {
+                                    idol_list['sakamichi'].push(gen); // 將每個隊伍的期別直接加入到 cpbl 的資料中
+                                });
+                            }
+                        });
+                    }
 
+                    else {
+                        // 對於單一團體，直接將資料賦值
+                        if (results[0]) { // 確保有資料
+                            idol_list[group] = results[0];
+                        }
+                    }
+
+                    console.log("所有團體資料已合併:", idol_list);
+
+                    // 只有當當前選擇的 group 有資料時才進行初始化顯示
+                    const currentGroupData = idol_list[group];
+                    if (currentGroupData && currentGroupData.length > 0) {
+                        $("#content,#result").hide();
+                        initialize_html = `<div class="accordion accordion-flush" id="accordionFlushExample">`;
+
+                        currentGroupData.forEach((gen, index) => { // 遍歷當前團體的資料
+                            // 確保 gen[0] 存在，否則給予預設值
+                            const enGen = gen[0] ? gen[0].En_Gen : `gen_${index}`;
+                            const generationName = gen[0] ? gen[0].Generation : `未命名期別 ${index}`;
+
+                            initialize_html += `
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header d-flex" id="flush-heading${index}">
+                                        <span class="d-flex align-items-center" onclick="event.stopPropagation();">
+                                            <input type="checkbox" class="me-2" id="${enGen}" onchange='Generation_change("${enGen}", "${group}")'>
+                                            <label for="${enGen}" class="mb-0">${generationName}</label>
+                                        </span>
+                                        <button class="accordion-button collapsed" style="width:80%" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapse${index}" aria-expanded="false" aria-controls="flush-collapse${index}">
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse${index}" class="accordion-collapse collapse" aria-labelledby="flush-heading${index}"
+                                        data-bs-parent="#accordionFlushExample">
+                            `;
+
+                            for (let i = 1; i < gen.length; i++) {
+                                initialize_html += `
+                                    <div class="accordion-body">
+                                        <input type="checkbox" name="" id="${gen[i].En_Name}">
+                                        <label for="${gen[i].En_Name}">${gen[i].Name}</label>
+                                    </div>
+                                `;
+                            }
+                            initialize_html += `</div></div>`;
+                        });
+
+                        initialize_html += `</div>`;
+                        $("#initialize").append(initialize_html);
+
+                        $("input[type='checkbox']").change(function () { // 監聽所有 checkbox 的變化
+                            $('#h1_people').text(`你已經選擇${member_choose(group)}人`) // 傳入 group
+                            if (member_choose(group) >= 5) { // 傳入 group
+                                $('#startButton').prop('disabled', false);
+                            } else {
+                                $('#startButton').prop('disabled', true);
+                            }
+                        });
+                    } else {
+                        console.warn(`選擇的團體 '${group}' 沒有對應的資料。`);
+                        $("#initialize").html(`<h1 class="text-center" style="color: red;">抱歉，找不到 ${config ? config.title : group} 的資料。</h1>`);
+                        $('#startButton').prop('disabled', true); // 無資料時禁用開始按鈕
+                    }
+                })
+                .catch(error => {
+                    console.error('Error in Promise.all or processing data:', error);
+                    $("#initialize").html(`<h1 class="text-center" style="color: red;">載入資料時發生錯誤。</h1>`);
+                    $('#startButton').prop('disabled', true); // 錯誤時禁用開始按鈕
+                });
+        });
+
+        // 傳入當前的 group，以便從正確的資料集取資料
+        function Generation_change(enGen, currentGroup) {
+            let gen_checked = $(`#${enGen}`).prop('checked');
+            // 從 idol_list 中取出當前團體的資料
+            const currentGroupData = idol_list[currentGroup];
+            if (!currentGroupData) return; // 如果沒有資料，直接返回
+
+            // 找到對應的期別或隊伍資料
+            let targetGen = null;
+            for (let i = 0; i < currentGroupData.length; i++) {
+                if (currentGroupData[i][0] && currentGroupData[i][0].En_Gen === enGen) {
+                    targetGen = currentGroupData[i];
+                    break;
+                }
+            }
+
+            if (targetGen) {
+                targetGen.slice(1).forEach(member => {
+                    $(`#${member.En_Name}`).prop('checked', gen_checked);
+                });
+            }
+            $('#h1_people').text(`你已經選擇${member_choose(currentGroup)}人`);
+            if (member_choose(currentGroup) >= 5) {
+                $('#startButton').prop('disabled', false);
+            } else {
+                $('#startButton').prop('disabled', true);
+            }
         }
-        function member_choose() {//計算選擇幾個成員
+
+        // 傳入當前的 group，以便從正確的資料集取資料
+        function member_choose(currentGroup) {
             let been_choose = 0;
-            idol_list.forEach(gen => {
+            const currentGroupData = idol_list[currentGroup];
+            if (!currentGroupData) return 0;
+
+            currentGroupData.forEach(gen => {
                 for (let index = 1; index < gen.length; index++) {
                     if ($(`#${gen[index].En_Name}`).prop('checked')) {
                         been_choose++;
@@ -279,131 +345,132 @@
             })
             return been_choose;
         }
+
         function shuffle(arr) {
             for (let i = arr.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [arr[i], arr[j]] = [arr[j], arr[i]]; // swap
             }
         }
+
         function displayMatch() {
             if (currentMatchIndex >= matches.length) {
                 round++;
                 startRound();
                 return;
             }
-            need_play_around = Math.max(1, Math.ceil(getBaseLog(2, member_choose()) + 2));
+            need_play_around = Math.max(1, Math.ceil(getBaseLog(2, choose_member.length) + 2));
 
             let [idol1, idol2] = matches[currentMatchIndex];
-            let count = ((round - 1) * Math.floor(choose_member.length / 2.0) + currentMatchIndex + 1)
-            let percent = count / (need_play_around * (choose_member.length / 2)) * 100
-            console.log(matches, currentMatchIndex);
+            let count = ((round - 1) * matches.length + currentMatchIndex + 1);
+            let total_matches_needed = need_play_around * Math.floor(choose_member.length / 2.0); // 這裡修正為 matches.length 而不是 Math.floor(choose_member.length / 2.0)
+            let percent = (count / total_matches_needed) * 100;
 
             content_html = `
-            <div class="container result-box p-3">
+                <div class="container result-box p-3">
+                <div class="text-center mb-2">No.${count}</div>
+                ${percent.toFixed(2)}%
+                <div class="progress mb-2" style="height: 20px;">
+                    <div class="progress-bar" role="progressbar" style="width: ${percent}%;" aria-valuenow="0" aria-valuemin="0"
+                        aria-valuemax="100">
+                    </div>
+                </div>
 
-            <!-- 編號與進度條 -->
-            <div class="text-center mb-2">No.${count}</div>
-            ${percent.toFixed(2)}%
-            <div class="progress mb-2" style="height: 20px;">
-                <div class="progress-bar" role="progressbar" style="width: ${percent}%;" aria-valuenow="0" aria-valuemin="0"
-                    aria-valuemax="100">
+                <div class="row ">
+                    <div class="col-md-6 text-center">
+                        <div>${idol1.Name}</div>
+                        <img src="${idol1.img}" class=" mt-2 mb-3" style="width:300px" alt="${idol1.Name}" onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',1)">
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div>${idol2.Name}</div>
+                        <img src="${idol2.img}" class=" mt-2 mb-3" style="width:300px" alt="${idol2.Name}" onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',2)">
+                    </div>
                 </div>
-            </div>
 
-            <!-- 成員資訊與圖片 -->
-            <div class="row ">
-                <div class="col-md-6 text-center">
-                    <div>${idol1.Name}</div>
-                    <img src="${idol1.img}" class=" mt-2 mb-3" style="width:300px" alt="${idol1.Name}"  onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',1)">
+                <div class="row text-center mt-3">
+                    <div class="col-12">
+                        <button class="btn btn-light vote-btn border" onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',0)">平手</button>
+                    </div>
                 </div>
-                <div class="col-md-6 text-center">
-                    <div>${idol2.Name}</div>
-                    <img src="${idol2.img}" class=" mt-2 mb-3" style="width:300px" alt="${idol2.Name}"  onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',2)">
                 </div>
-            </div>
-
-            <!-- 選擇按鈕 -->
-            <div class="row text-center mt-3">
-                <div class="col-12">
-                    <button class="btn btn-light vote-btn border" onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',0)">平手</button>
-                </div>
-            </div>
-        </div>
-            
-            `;
+                `;
             $("#content").empty();
             $("#content").append(content_html);
-
-
         }
 
         function selectWin(id1, id2, result) {
-
             let idol1 = choose_member.find(idol => idol['En_Name'] == id1);
             let idol2 = choose_member.find(idol => idol['En_Name'] == id2);
 
-            console.log(idol1, idol2, result);
-
             if (result == 1) {
                 idol1["Point"] += 3
-            }
-            else if (result == 2) {
+            } else if (result == 2) {
                 idol2["Point"] += 3
-
-            }
-            else if (result == 0) {
+            } else if (result == 0) {
                 idol1["Point"] += 1
                 idol2["Point"] += 1
             }
             currentMatchIndex++;
-            displayMatch()
-
+            displayMatch();
         }
+
         function startRound() {
-            need_play_around = Math.max(1, Math.ceil(getBaseLog(2, member_choose()) + 2));
+            need_play_around = Math.max(1, Math.ceil(getBaseLog(2, choose_member.length) + 2));
             if (round > need_play_around) {
                 showRanking();
                 return;
             }
+
             choose_member.sort((a, b) => b["Point"] - a["Point"]);
-            console.log(choose_member);
             matches = [];
-            let paired = new Set();
+            let paired_this_round = new Set();
 
+            let potential_pairs = [];
             for (let i = 0; i < choose_member.length; i++) {
-                let idol1 = choose_member[i];
-
-                if (paired.has(idol1['En_Name'])) continue;
-
                 for (let j = i + 1; j < choose_member.length; j++) {
+                    let idol1 = choose_member[i];
                     let idol2 = choose_member[j];
-                    //p2這輪沒比過又沒有打過P1
-                    if (!paired.has(idol2['En_Name']) && !idol1["Has_been_fight"].includes(idol2['En_Name'])) {
-                        idol1["Has_been_fight"].push(idol2['En_Name']);
-                        idol2["Has_been_fight"].push(idol1['En_Name']);
-                        paired.add(idol1['En_Name']);
-                        paired.add(idol2['En_Name']);
-                        matches.push([idol1, idol2]);
-                        break;
+
+                    if (!paired_this_round.has(idol1['En_Name']) &&
+                        !paired_this_round.has(idol2['En_Name']) &&
+                        !idol1["Has_been_fight"].includes(idol2['En_Name'])) {
+
+                        potential_pairs.push([idol1, idol2]);
+                        paired_this_round.add(idol1['En_Name']);
+                        paired_this_round.add(idol2['En_Name']);
                     }
                 }
             }
-            console.log(paired);
-            console.log(choose_member);
+            shuffle(potential_pairs);
+            matches = potential_pairs;
 
-            let unpaired = choose_member.find(idol => !paired.has(idol["En_Name"]) && !idol['Get_Bye']);
-            if (unpaired) {
-                unpaired['Point'] += 2;
-                unpaired['Get_Bye'] = true;  // 記錄這個人已經獲得過 bye
-            }
+            let current_round_participants = new Set(matches.flat().map(idol => idol.En_Name));
+            let unpaired_this_round = choose_member.filter(idol => !current_round_participants.has(idol.En_Name));
+
+            unpaired_this_round.forEach(unpaired_idol => {
+                if (!unpaired_idol['Get_Bye']) {
+                    unpaired_idol['Point'] += 2;
+                    unpaired_idol['Get_Bye'] = true;
+                }
+            });
+
             currentMatchIndex = 0;
             displayMatch();
         }
 
         function Game_start() {
-            idol_list.forEach(gen => {//按下開始遊戲
-                for (let index = 1; index < gen.length; index++) {
+            choose_member = [];
+            const urlParams = new URLSearchParams(window.location.search);
+            let group = urlParams.get('group') || 'n46';
+            const currentGroupData = idol_list[group]; // 從合併後的 idol_list 中取出當前團體的資料
 
+            if (!currentGroupData) {
+                console.error("無法開始遊戲：找不到當前團體的資料。");
+                return;
+            }
+
+            currentGroupData.forEach(gen => {
+                for (let index = 1; index < gen.length; index++) {
                     if ($(`#${gen[index].En_Name}`).prop('checked')) {
                         choose_member.push(
                             {
@@ -411,13 +478,14 @@
                                 En_Name: `${gen[index].En_Name}`,
                                 img: `${gen[index].Img_Path}`,
                                 Point: 0,
-                                Has_been_fight: []
+                                Has_been_fight: [],
+                                Get_Bye: false
                             }
                         );
                     }
                 }
             })
-            shuffle(choose_member)//打亂參賽選手陣列
+            shuffle(choose_member);
 
 
             $("#initialize").hide();
@@ -427,6 +495,7 @@
             startRound();
 
         }
+
         function showRanking() {
             let ranking_html = ``;
             $("#content").hide();
@@ -434,38 +503,36 @@
             choose_member.sort((a, b) => b["Point"] - a["Point"]);
 
             console.log(choose_member);
-            alert(choose_member[0].En_Name)
+            alert(choose_member[0].Name + " 獲得第一名！") // 這裡將 En_Name 改為 Name，更人性化
             ranking_html += `
-            <table class="table">
-                <tr>
-                    <th>排名</th>    
-                    <th>成員</th>    
-                    <th>Point</th>    
-                </tr>
-                `
+                <table class="table">
+                    <tr>
+                        <th>排名</th>
+                        <th>成員</th>
+                        <th>Point</th>
+                    </tr>
+                    `
             choose_member.forEach((mem, index) => {
                 ranking_html += `
-                    <tr>
-                        <td>${index + 1}</td>    
-                        <td>${mem.Name}</td>    
-                        <td>${mem.Point}</td>    
-                    </tr>
-                `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${mem.Name}</td>
+                            <td>${mem.Point}</td>
+                        </tr>
+                    `
             })
             ranking_html += `</table>`;
             $("#result").append(ranking_html)
-
         }
+
         function getBaseLog(x, y) {
             return Math.log(y) / Math.log(x);
         }
-        /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
         function openNav() {
             document.getElementById("mySidebar").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
         }
 
-        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
         function closeNav() {
             document.getElementById("mySidebar").style.width = "0";
             document.getElementById("main").style.marginLeft = "0";
