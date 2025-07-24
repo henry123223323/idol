@@ -126,8 +126,8 @@
     <script>
         // 團隊配置資料，包含名稱、檔案路徑和代表色 (用於標題，若有需要)
         const groups = [
-            { id: 'sakamichi', name: 'Sakamichi46', jsonPaths: ['./json/n46.json', './json/s46.json', './json/h46.json'] },
             { id: 'cpbl', name: 'CPBL GIRLS', jsonPaths: ['./json/fa.json', './json/db.json', './json/rg.json', './json/ps.json', './json/ug.json', './json/ws.json'] },
+            { id: 'sakamichi', name: 'Sakamichi46', jsonPaths: ['./json/n46.json', './json/s46.json', './json/h46.json'] },
             { id: 'n46', name: 'Nogizaka46', jsonPath: './json/n46.json' },
             { id: 's46', name: 'Sakurazaka46', jsonPath: './json/s46.json' },
             { id: 'h46', name: 'Hinatazaka46', jsonPath: './json/h46.json' },
@@ -192,12 +192,18 @@
                 const group = groups[index];
                 let randomImg = '';
                 if (index == 0) {
-                    cardHtml += `<h1 class="w-100 text-center">Mix</h1>`
+                    cardHtml += `<h1 class="w-100 text-center">Mix</h1>
+                    
+
+                    `
                 }
                 else if (index == 2) {
-                    cardHtml += `<h1 class="w-100 text-center">Sakamichi46</h1>`
+                    cardHtml += `
+                    
+                    <h1 class="w-100 text-center">Sakamichi46</h1>`
 
                 }
+
                 else if (index == 5) {
                     cardHtml += `<h1 class="w-100 text-center">CPBL</h1>`
 
@@ -210,22 +216,22 @@
                         randomImg = availableImgPaths[Math.floor(Math.random() * availableImgPaths.length)];
                     } else {
                         console.warn(`No valid images found for ${group.name}. Using placeholder.`);
-                        randomImg = './images/placeholder.jpg'; // 提供一個預設圖片路徑
+                        randomImg = './img/placeholder.jpg'; // 提供一個預設圖片路徑
                     }
                 } else {
                     console.warn(`Failed to load images for ${group.name}. Using placeholder.`);
-                    randomImg = './images/placeholder.jpg'; // 提供一個預設圖片路徑
+                    randomImg = './img/placeholder.jpg'; // 提供一個預設圖片路徑
                 }
 
                 // 如果 randomImg 為空，則再次使用預設圖片
                 if (!randomImg) {
-                    randomImg = './images/placeholder.jpg';
+                    randomImg = './img/placeholder.jpg';
                 }
 
                 cardHtml += `
-                    <div class="col">
-                        <a href="./idol.html?group=${group.id}" class="card group-card h-100" data-group="${group.id}">
-                            <img src="${randomImg}" class="card-img-top h-100" alt="${group.name}">
+                    <div class="col-12 col-md-4">
+                        <a href="./idol.html?group=${group.id}" class="card group-card " data-group="${group.id}">
+                            <img src="${randomImg}" onerror="Default_Img(this,'${group.id}')" class="card-img-top h-100" alt="${group.name}">
                             <div class="card-body">
                                 <h5 class="card-title">${group.name}</h5>
                             </div>
@@ -235,6 +241,47 @@
                 groupCardsContainer.append(cardHtml);
             });
         });
+        function Default_Img(a, group) {
+            a.onerror = null;
+            console.log(group);
+            switch (group) {
+                case 'n46':
+                    a.src = './img/nogiicon.png';
+                    break;
+                case 's46':
+                    a.src = './img/saku_icon.png';
+                    break;
+                case 'h46':
+                    a.src = './img/hinataicon.png';
+                    break;
+                case 'fa':
+                    a.src = './img/fubonAngles.jpg';
+                    break;
+                case 'db':
+                    a.src = './img/db.jpg';
+                    break;
+                case 'rg':
+                    a.src = './img/rg.jpg';
+                    break;
+                case 'ps':
+                    a.src = './img/ps.jpg';
+                    break;
+                case 'ug':
+                    a.src = './img/ug.jpg';
+                    break;
+                case 'ws':
+                    a.src = './img/ws.jpg';
+                    break;
+                case 'cpbl':
+                    a.src = './img/cpbl.jpg';
+                    break;
+                default:
+                    a.src = './img/saka.jpg';
+                    break;
+            }
+
+
+        }
     </script>
 </body>
 

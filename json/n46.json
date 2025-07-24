@@ -2,12 +2,12 @@
     [
         {
             "Generation": "乃木坂46三期生",
-            "En_Gen": "ki_3"
+            "En_Gen": "ngzk_3"
         },
         {
             "Name": "伊藤理々杏",
             "En_Name": "Riria_Ito",
-            "Img_Path": "./img/nogizaka46/RiriaItou.jpg"
+            "Img_Path": "./img/nogizaka46/RiriaIto.jpg"
         },
         {
             "Name": "岩本蓮加",
@@ -15,25 +15,25 @@
             "Img_Path": "./img/nogizaka46/RenkaIwamoto.jpg"
         },
         {
-            "Name": "久保史緒里",
-            "En_Name": "Shiori_Kubo",
-            "Img_Path": "./img/nogizaka46/ShioriKubo.jpg"
-        },
-        {
             "Name": "梅澤美波",
             "En_Name": "Minami_Umezawa",
             "Img_Path": "./img/nogizaka46/MinamiUmezawa.jpg"
         },
         {
+            "Name": "久保史緒里",
+            "En_Name": "Shiori_Kubo",
+            "Img_Path": "./img/nogizaka46/ShioriKubo.jpg"
+        },
+        {
             "Name": "吉田綾乃クリスティー",
-            "En_Name": "Ayano_Yoshida_Christie",
-            "Img_Path": "./img/nogizaka46/AyanoYoshidaChristie.jpg"
+            "En_Name": "AyanoChristie_Yoshida",
+            "Img_Path": "./img/nogizaka46/AyanoChristieYoshida.jpg"
         }
     ],
     [
         {
             "Generation": "乃木坂46四期生",
-            "En_Gen": "ki_4"
+            "En_Gen": "ngzk_4"
         },
         {
             "Name": "遠藤さくら",
@@ -81,6 +81,11 @@
             "Img_Path": "./img/nogizaka46/RunaHayashi.jpg"
         },
         {
+            "Name": "松尾美佑",
+            "En_Name": "Miyu_Matsuo",
+            "Img_Path": "./img/nogizaka46/MiyuMatsuo.jpg"
+        },
+        {
             "Name": "矢久保美緒",
             "En_Name": "Mio_Yakubo",
             "Img_Path": "./img/nogizaka46/MioYakubo.jpg"
@@ -89,32 +94,12 @@
             "Name": "弓木奈於",
             "En_Name": "Nao_Yumiki",
             "Img_Path": "./img/nogizaka46/NaoYumiki.jpg"
-        },
-        {
-            "Name": "松尾美佑",
-            "En_Name": "Miyu_Matsuo",
-            "Img_Path": "./img/nogizaka46/MiyuMatsuo.jpg"
         }
     ],
     [
         {
             "Generation": "乃木坂46五期生",
-            "En_Gen": "ki_5"
-        },
-        {
-            "Name": "一ノ瀬美空",
-            "En_Name": "Miku_Ichinose",
-            "Img_Path": "./img/nogizaka46/MikuIchinose.jpg"
-        },
-        {
-            "Name": "池田瑛紗",
-            "En_Name": "Teresa_Ikeda",
-            "Img_Path": "./img/nogizaka46/TeresaIkeda.jpg"
-        },
-        {
-            "Name": "井上和",
-            "En_Name": "Nagi_Inoue",
-            "Img_Path": "./img/nogizaka46/NagiInoue.jpg"
+            "En_Gen": "ngzk_5"
         },
         {
             "Name": "五百城茉央",
@@ -122,19 +107,24 @@
             "Img_Path": "./img/nogizaka46/MaoIoki.jpg"
         },
         {
+            "Name": "池田瑛紗",
+            "En_Name": "Teresa_Ikeda",
+            "Img_Path": "./img/nogizaka46/TeresaIkeda.jpg"
+        },
+        {
+            "Name": "一ノ瀬美空",
+            "En_Name": "Miku_Ichinose",
+            "Img_Path": "./img/nogizaka46/MikuIchinose.jpg"
+        },
+        {
+            "Name": "井上和",
+            "En_Name": "Nagi_Inoue",
+            "Img_Path": "./img/nogizaka46/NagiInoue.jpg"
+        },
+        {
             "Name": "岡本姫奈",
             "En_Name": "Hina_Okamoto",
             "Img_Path": "./img/nogizaka46/HinaOkamoto.jpg"
-        },
-        {
-            "Name": "川﨑桜",
-            "En_Name": "Sakura_Kawasaki",
-            "Img_Path": "./img/nogizaka46/SakuraKawazaki.jpg"
-        },
-        {
-            "Name": "中西アルノ",
-            "En_Name": "Aruno_Nakanishi",
-            "Img_Path": "./img/nogizaka46/ArunoNakanishi.jpg"
         },
         {
             "Name": "小川彩",
@@ -147,20 +137,30 @@
             "Img_Path": "./img/nogizaka46/IrohaOkuda.jpg"
         },
         {
-            "Name": "冨里奈央",
-            "En_Name": "Nao_Tomisato",
-            "Img_Path": "./img/nogizaka46/NaoTomisato.jpg"
+            "Name": "川﨑桜",
+            "En_Name": "Sakura_Kawasaki",
+            "Img_Path": "./img/nogizaka46/SakuraKawazaki.jpg"
         },
         {
             "Name": "菅原咲月",
             "En_Name": "Satsuki_Sugawara",
             "Img_Path": "./img/nogizaka46/SatsukiSugawara.jpg"
+        },
+        {
+            "Name": "冨里奈央",
+            "En_Name": "Nao_Tomisato",
+            "Img_Path": "./img/nogizaka46/NaoTomisato.jpg"
+        },
+        {
+            "Name": "中西アルノ",
+            "En_Name": "Aruno_Nakanishi",
+            "Img_Path": "./img/nogizaka46/ArunoNakanishi.jpg"
         }
     ],
     [
         {
             "Generation": "乃木坂46六期生",
-            "En_Gen": "ki_6"
+            "En_Gen": "ngzk_6"
         },
         {
             "Name": "愛宕心響",
@@ -178,7 +178,7 @@
             "Img_Path": "./img/nogizaka46/ReinaOzu.jpg"
         },
         {
-            "Name": "海邊朱莉",
+            "Name": "海邉朱莉",
             "En_Name": "Akari_Kaibe",
             "Img_Path": "./img/nogizaka46/AkariKaibe.jpg"
         },
@@ -193,17 +193,17 @@
             "Img_Path": "./img/nogizaka46/YuunaSuzuki.jpg"
         },
         {
-            "Name": "瀬戸口心月",
+            "Name": "瀨戶口心月",
             "En_Name": "Mitsuki_Setoguchi",
             "Img_Path": "./img/nogizaka46/MitsukiSetoguchi.jpg"
         },
         {
-            "Name": "長嶋凛桜",
+            "Name": "長嶋凜櫻",
             "En_Name": "Rio_Nagashima",
             "Img_Path": "./img/nogizaka46/RioNagashima.jpg"
         },
         {
-            "Name": "増田三莉音",
+            "Name": "增田三莉音",
             "En_Name": "Mirine_Masuda",
             "Img_Path": "./img/nogizaka46/MirineMasuda.jpg"
         },
@@ -216,6 +216,340 @@
             "Name": "矢田萌華",
             "En_Name": "Moeka_Yada",
             "Img_Path": "./img/nogizaka46/MoekaYada.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "畢業生-乃木坂46一期生",
+            "En_Gen": "graduate_ngzk_1"
+        },
+        {
+            "Name": "吉本彩華",
+            "En_Name": "Ayaka_Yoshimoto",
+            "Img_Path": "./img/nogizaka46/AyakaYoshimoto.jpg"
+        },
+        {
+            "Name": "山本穗乃香",
+            "En_Name": "Honoka_Yamamoto",
+            "Img_Path": "./img/nogizaka46/HonokaYamamoto.jpg"
+        },
+        {
+            "Name": "岩瀨佑美子",
+            "En_Name": "Yumiko_Iwase",
+            "Img_Path": "./img/nogizaka46/YumikoIwase.jpg"
+        },
+        {
+            "Name": "安藤美雲",
+            "En_Name": "Mikumo_Ando",
+            "Img_Path": "./img/nogizaka46/MikumoAndo.jpg"
+        },
+        {
+            "Name": "柏幸奈",
+            "En_Name": "Yukina_Kashiwa",
+            "Img_Path": "./img/nogizaka46/YukinaKashiwa.jpg"
+        },
+        {
+            "Name": "宮澤成良",
+            "En_Name": "Seira_Miyazawa",
+            "Img_Path": "./img/nogizaka46/SeiraMiyazawa.jpg"
+        },
+        {
+            "Name": "市來玲奈",
+            "En_Name": "Rena_Ichiki",
+            "Img_Path": "./img/nogizaka46/RenaIchiki.jpg"
+        },
+        {
+            "Name": "伊藤寧寧",
+            "En_Name": "Nene_Ito",
+            "Img_Path": "./img/nogizaka46/NeneIto.jpg"
+        },
+        {
+            "Name": "大和里菜",
+            "En_Name": "Rina_Yamato",
+            "Img_Path": "./img/nogizaka46/RinaYamato.jpg"
+        },
+        {
+            "Name": "畠中清羅",
+            "En_Name": "Seira_Hatanaka",
+            "Img_Path": "./img/nogizaka46/SeiraHatanaka.jpg"
+        },
+        {
+            "Name": "松井玲奈",
+            "En_Name": "Rena_Matsui",
+            "Img_Path": "./img/nogizaka46/RenaMatsui.jpg"
+        },
+        {
+            "Name": "永島聖羅",
+            "En_Name": "Seira_Nagashima",
+            "Img_Path": "./img/nogizaka46/SeiraNagashima.jpg"
+        },
+        {
+            "Name": "深川麻衣",
+            "En_Name": "Mai_Fukagawa",
+            "Img_Path": "./img/nogizaka46/MaiFukagawa.jpg"
+        },
+        {
+            "Name": "橋本奈々未",
+            "En_Name": "Nanami_Hashimoto",
+            "Img_Path": "./img/nogizaka46/NanamiHashimoto.jpg"
+        },
+        {
+            "Name": "中元日芽香",
+            "En_Name": "Himeka_Nakamoto",
+            "Img_Path": "./img/nogizaka46/HimekaNakamoto.jpg"
+        },
+        {
+            "Name": "伊藤萬理華",
+            "En_Name": "Marika_Ito",
+            "Img_Path": "./img/nogizaka46/MarikaIto.jpg"
+        },
+        {
+            "Name": "川村真洋",
+            "En_Name": "Mahiro_Kawamura",
+            "Img_Path": "./img/nogizaka46/MahiroKawamura.jpg"
+        },
+        {
+            "Name": "生駒里奈",
+            "En_Name": "Rina_Ikoma",
+            "Img_Path": "./img/nogizaka46/RinaIkoma.jpg"
+        },
+        {
+            "Name": "斎藤ちはる",
+            "En_Name": "Chiharu_Saito",
+            "Img_Path": "./img/nogizaka46/ChiharuSaito.jpg"
+        },
+        {
+            "Name": "若月佑美",
+            "En_Name": "Yumi_Wakatsuki",
+            "Img_Path": "./img/nogizaka46/YumiWakatsuki.jpg"
+        },
+        {
+            "Name": "西野七瀨",
+            "En_Name": "Nanase_Nishino",
+            "Img_Path": "./img/nogizaka46/NanaseNishino.jpg"
+        },
+        {
+            "Name": "衛藤美彩",
+            "En_Name": "Misa_Eto",
+            "Img_Path": "./img/nogizaka46/MisaEto.jpg"
+        },
+        {
+            "Name": "齊藤優里",
+            "En_Name": "Yuri_Saito",
+            "Img_Path": "./img/nogizaka46/YuriSaito.jpg"
+        },
+        {
+            "Name": "櫻井玲香",
+            "En_Name": "Reika_Sakurai",
+            "Img_Path": "./img/nogizaka46/ReikaSakurai.jpg"
+        },
+        {
+            "Name": "井上小百合",
+            "En_Name": "Sayuri_Inoue",
+            "Img_Path": "./img/nogizaka46/SayuriInoue.jpg"
+        },
+        {
+            "Name": "中田花奈",
+            "En_Name": "Kana_Nakada",
+            "Img_Path": "./img/nogizaka46/KanaNakada.jpg"
+        },
+        {
+            "Name": "白石麻衣",
+            "En_Name": "Mai_Shiraishi",
+            "Img_Path": "./img/nogizaka46/MaiShiraishi.jpg"
+        },
+        {
+            "Name": "松村沙友理",
+            "En_Name": "Sayuri_Matsumura",
+            "Img_Path": "./img/nogizaka46/SayuriMatsumura.jpg"
+        },
+        {
+            "Name": "高山一實",
+            "En_Name": "Kazumi_Takayama",
+            "Img_Path": "./img/nogizaka46/KazumiTakayama.jpg"
+        },
+        {
+            "Name": "生田繪梨花",
+            "En_Name": "Erika_Ikuta",
+            "Img_Path": "./img/nogizaka46/ErikaIkuta.jpg"
+        },
+        {
+            "Name": "星野南",
+            "En_Name": "Minami_Hoshino",
+            "Img_Path": "./img/nogizaka46/MinamiHoshino.jpg"
+        },
+        {
+            "Name": "樋口日奈",
+            "En_Name": "Hina_Higuchi",
+            "Img_Path": "./img/nogizaka46/HinaHiguchi.jpg"
+        },
+        {
+            "Name": "和田真彩",
+            "En_Name": "Maaya_Wada",
+            "Img_Path": "./img/nogizaka46/MaayaWada.jpg"
+        },
+        {
+            "Name": "齋藤飛鳥",
+            "En_Name": "Asuka_Saito",
+            "Img_Path": "./img/nogizaka46/AsukaSaito.jpg"
+        },
+        {
+            "Name": "秋元真夏",
+            "En_Name": "Manatsu_Akimoto",
+            "Img_Path": "./img/nogizaka46/ManatsuAkimoto.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "畢業生-乃木坂46二期生",
+            "En_Gen": "graduate_ngzk_2"
+        },
+        {
+            "Name": "相樂伊織",
+            "En_Name": "Iori_Sagara",
+            "Img_Path": "./img/nogizaka46/IoriSagara.jpg"
+        },
+        {
+            "Name": "能條愛未",
+            "En_Name": "Ami_Nojo",
+            "Img_Path": "./img/nogizaka46/AmiNojo.jpg"
+        },
+        {
+            "Name": "川後陽菜",
+            "En_Name": "Hina_Kawago",
+            "Img_Path": "./img/nogizaka46/HinaKawago.jpg"
+        },
+        {
+            "Name": "伊藤かりん",
+            "En_Name": "Karin_Ito",
+            "Img_Path": "./img/nogizaka46/KarinIto.jpg"
+        },
+        {
+            "Name": "佐佐木琴子",
+            "En_Name": "Kotoko_Sasaki",
+            "Img_Path": "./img/nogizaka46/KotokoSasaki.jpg"
+        },
+        {
+            "Name": "堀未央奈",
+            "En_Name": "Miona_Hori",
+            "Img_Path": "./img/nogizaka46/MionaHori.jpg"
+        },
+        {
+            "Name": "伊藤純奈",
+            "En_Name": "Junna_Ito",
+            "Img_Path": "./img/nogizaka46/JunnaIto.jpg"
+        },
+        {
+            "Name": "渡辺みり愛",
+            "En_Name": "Miria_Watanabe",
+            "Img_Path": "./img/nogizaka46/MiriaWatanabe.jpg"
+        },
+        {
+            "Name": "寺田蘭世",
+            "En_Name": "Ranze_Terada",
+            "Img_Path": "./img/nogizaka46/RanzeTerada.jpg"
+        },
+        {
+            "Name": "新內真衣",
+            "En_Name": "Mai_Shinuchi",
+            "Img_Path": "./Img/nogizaka46/MaiShinuchi.jpg"
+        },
+        {
+            "Name": "北野日奈子",
+            "En_Name": "Hinako_Kitano",
+            "Img_Path": "./img/nogizaka46/HinakoKitano.jpg"
+        },
+        {
+            "Name": "山崎怜奈",
+            "En_Name": "Rena_Yamazaki",
+            "Img_Path": "./img/nogizaka46/RenaYamazaki.jpg"
+        },
+        {
+            "Name": "鈴木絢音",
+            "En_Name": "Ayane_Suzuki",
+            "Img_Path": "./img/nogizaka46/AyaneSuzuki.jpg"
+        },
+        {
+            "Name": "西川七海",
+            "En_Name": "Nanami_Nishikawa",
+            "Img_Path": "./img/nogizaka46/NanamiNishikawa.jpg"
+        },
+        {
+            "Name": "矢田里沙子",
+            "En_Name": "Risako_Yada",
+            "Img_Path": "./img/nogizaka46/RisakoYada.jpg"
+        },
+        {
+            "Name": "米德京花",
+            "En_Name": "Kyoka_Yonetoku",
+            "Img_Path": "./img/nogizaka46/KyokaYonetoku.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "畢業生-乃木坂46三期生",
+            "En_Gen": "graduate_ngzk_3"
+        },
+        {
+            "Name": "大園桃子",
+            "En_Name": "Momoko_Ozone",
+            "Img_Path": "./img/nogizaka46/MomokoOzone.jpg"
+        },
+        {
+            "Name": "山下美月",
+            "En_Name": "Mizuki_Yamashita",
+            "Img_Path": "./img/nogizaka46/MizukiYamashita.jpg"
+        },
+        {
+            "Name": "阪口珠美",
+            "En_Name": "Tamami_Sakaguchi",
+            "Img_Path": "./img/nogizaka46/TamamiSakaguchi.jpg"
+        },
+        {
+            "Name": "向井葉月",
+            "En_Name": "Hazuki_Mukai",
+            "Img_Path": "./img/nogizaka46/HazukiMukai.jpg"
+        },
+        {
+            "Name": "与田祐希",
+            "En_Name": "Yuki_Yoda",
+            "Img_Path": "./img/nogizaka46/YukiYoda.jpg"
+        },
+        {
+            "Name": "佐藤楓",
+            "En_Name": "Kaede_Sato",
+            "Img_Path": "./img/nogizaka46/KaedeSato.jpg"
+        },
+        {
+            "Name": "中村麗乃",
+            "En_Name": "Reno_Nakamura",
+            "Img_Path": "./img/nogizaka46/RenoNakamura.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "畢業生-乃木坂46四期生",
+            "En_Gen": "graduate_ngzk_4"
+        },
+        {
+            "Name": "北川悠理",
+            "En_Name": "Yuri_Kitagawa",
+            "Img_Path": "./img/nogizaka46/YuriKitagawa.jpg"
+        },
+        {
+            "Name": "早川聖來",
+            "En_Name": "Seira_Hayakawa",
+            "Img_Path": "./img/nogizaka46/SeiraHayakawa.jpg"
+        },
+        {
+            "Name": "清宮レイ",
+            "En_Name": "Rei_Seimiya",
+            "Img_Path": "./img/nogizaka46/ReiSeimiya.jpg"
+        },
+        {
+            "Name": "掛橋沙耶香",
+            "En_Name": "Sayaka_Kakehashi",
+            "Img_Path": "./img/nogizaka46/SayakaKakehashi.jpg"
         }
     ]
 ]

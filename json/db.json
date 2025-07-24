@@ -148,12 +148,6 @@
             "Name": "權喜原",
             "En_Name": "HeeWon",
             "Img_Path": "./img/dragon_beauties/HeeWon.jpg"
-        }
-    ],
-    [
-        {
-            "Generation": "Dragon_Beauties練習生",
-            "En_Gen": "db_trainees"
         },
         {
             "Name": "美奈",

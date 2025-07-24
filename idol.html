@@ -13,6 +13,10 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js"
         integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <style>
+        :root {
+            --rainbow-gradient: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+        }
+
         /* The sidebar menu */
         .sidebar {
             height: 100%;
@@ -63,19 +67,20 @@
         .openbtn {
             font-size: 20px;
             cursor: pointer;
-            background-color: #7d2982;
+            background-color: inherit;
             color: white;
             padding: 10px 15px;
             border: none;
         }
 
         .openbtn:hover {
-            background-color: #7d2982;
+            background-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
         }
 
         button:disabled {
             background-color: #e2bcbc !important;
         }
+
 
         /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
     </style>
@@ -106,6 +111,17 @@
     <div id="initialize" class="container">
         <h1 id="group_title" class="text-center" style="color: plum;">Nogizaka46</h1>
         <h1 class="text-center" id="h1_people">你已經選擇0人</h1>
+        <div id="gratuatedyon">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" for="inlineCheckbox1">現役成員</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                <label class="form-check-label" for="inlineCheckbox2">畢業成員</label>
+            </div>
+        </div>
+        <hr>
     </div>
     <div id="content"></div>
     <div id="result"></div>
@@ -137,10 +153,12 @@
         let content_html = '';
         let result_html = '';
         var need_play_around;
-
+        let group;
         document.addEventListener('DOMContentLoaded', function () {
             const urlParams = new URLSearchParams(window.location.search);
-            let group = urlParams.get('group') || 'n46'; // 預設載入 Nogizaka46
+            group = urlParams.get('group') || 'n46'; // 預設載入 Nogizaka46
+            const rainbowGradient = 'linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)';
+
 
             console.log("從 URL 參數獲取的值:");
             console.log("團體:", group);
@@ -157,13 +175,13 @@
                 'db': { title: 'Dragon Beauties', color: 'red', openBtnColor: 'black' },
                 'ug': { title: 'Uni Girls', color: 'orange', openBtnColor: 'black' },
                 'ws': { title: 'WING STARS', color: 'green', openBtnColor: 'black' },
-                'cpbl': { title: 'CPBL GIRLS', color: 'green', openBtnColor: 'black' }
+                'cpbl': { title: 'CPBL GIRLS', color: 'pink', openBtnColor: 'black' }
             };
 
             const config = groupConfigs[group];
             if (config) {
                 $("#group_title").text(config.title).css('color', config.color);
-                $("#main, .openbtn, .sidebar").css('background-color', config.color);
+                $("#main,.sidebar").css('background-color', config.color);
                 if (config.openBtnColor) {
                     $(".openbtn").css('color', config.openBtnColor);
                 }
@@ -175,6 +193,7 @@
             // 根據選擇的 group 決定要載入哪些 JSON
             let groupsToLoad = [];
             if (group === 'cpbl') {
+                $("#gratuatedyon").hide()
                 groupsToLoad = ['fa', 'db', 'rg', 'ps', 'ug', 'ws']; // CPBL 載入所有啦啦隊
             }
             else if (group === 'sakamichi') {
@@ -183,6 +202,10 @@
             }
             else {
                 groupsToLoad = [group]; // 其他團體只載入自己的 JSON
+                if (group != 'n46' && group != 's46' && group != 'h46') {
+                    $("#gratuatedyon").hide()
+
+                }
             }
 
             // 創建一個 Promise 陣列，每個 Promise 對應一個 fetch 請求
@@ -230,7 +253,6 @@
                             }
                         });
                     }
-
                     else {
                         // 對於單一團體，直接將資料賦值
                         if (results[0]) { // 確保有資料
@@ -276,9 +298,33 @@
                             }
                             initialize_html += `</div></div>`;
                         });
+                        let active_member = "#ngzk_3,#ngzk_4,#ngzk_5,#ngzk_6,#sk_2,#sk_3,#sk_4,#hz_2,#hz_3,#hz_4,#hz_5";
+                        let gratuated_member = "#graduate_ngzk_1,#graduate_ngzk_2,#graduate_ngzk_3,#graduate_ngzk_4,#graduate_kz_1,#graduate_sk_2,#gruate_hz_1,#gruate_hz_2,#gruate_hz_4";
 
                         initialize_html += `</div>`;
                         $("#initialize").append(initialize_html);
+                        $("#inlineCheckbox1").change(function () {
+                            if ($("#inlineCheckbox1").prop('checked')) {
+                                $(active_member).prop('checked', true);
+                                $(active_member).trigger('change');
+                            }
+                            else {
+                                $(active_member).prop('checked', false);
+                                $(active_member).trigger('change');
+
+
+                            }
+                        })
+                        $("#inlineCheckbox2").change(function () {
+                            if ($("#inlineCheckbox2").prop('checked')) {
+                                $(gratuated_member).prop('checked', true);
+                                $(gratuated_member).trigger('change');
+                            }
+                            else {
+                                $(gratuated_member).prop('checked', false);
+                                $(gratuated_member).trigger('change');
+                            }
+                        })
 
                         $("input[type='checkbox']").change(function () { // 監聽所有 checkbox 的變化
                             $('#h1_people').text(`你已經選擇${member_choose(group)}人`) // 傳入 group
@@ -300,6 +346,65 @@
                     $('#startButton').prop('disabled', true); // 錯誤時禁用開始按鈕
                 });
         });
+        $(document).on('keydown', function (event) {
+            console.log("Key pressed:", event.key); // Add this line
+
+            // 只有在顯示對戰內容（#content 可見）時才響應鍵盤事件
+            // 並且確保 matches 陣列有內容，且 currentMatchIndex 在有效範圍內
+            if ($("#content").is(":visible") && matches.length > 0 && currentMatchIndex < matches.length) {
+                let [idol1, idol2] = matches[currentMatchIndex]; // 獲取當前對戰的兩個偶像
+
+                if (event.key === 'ArrowLeft' || event.key === 'Left') { // 'Left' 為了兼容舊瀏覽器
+                    // 按下左箭頭鍵，選擇 idol1 獲勝 (result = 1)
+                    selectWin(idol1.En_Name, idol2.En_Name, 1);
+                } else if (event.key === 'ArrowRight' || event.key === 'Right') { // 'Right' 為了兼容舊瀏覽器
+                    // 按下右箭頭鍵，選擇 idol2 獲勝 (result = 2)
+                    selectWin(idol1.En_Name, idol2.En_Name, 2);
+                } else if (event.key === '0') { // 也可以考慮增加空白鍵觸發平手
+                    event.preventDefault(); // 阻止空白鍵預設的滾動行為awd
+                    selectWin(idol1.En_Name, idol2.En_Name, 0); // 空白鍵觸發平手
+                }
+            }
+        });
+        function Default_Img(a, group) {
+            a.onerror = null;
+            console.log(group);
+            switch (group) {
+                case 'n46':
+                    a.src = './img/nogiicon.png';
+                    break;
+                case 's46':
+                    a.src = './img/saku_icon.png';
+                    break;
+                case 'h46':
+                    a.src = './img/hinataicon.png';
+                    break;
+                case 'fa':
+                    a.src = './img/fubonAngles.jpg';
+                    break;
+                case 'db':
+                    a.src = './img/db.jpg';
+                    break;
+                case 'rg':
+                    a.src = './img/rg.jpg';
+                    break;
+                case 'ps':
+                    a.src = './img/ps.jpg';
+                    break;
+                case 'ug':
+                    a.src = './img/ug.jpg';
+                    break;
+                case 'ws':
+                    a.src = './img/ws.jpg';
+                    break;
+                case 'cpbl':
+                    a.src = './img/cpbl.jpg';
+                    break;
+                default:
+                    a.src = './img/saka.jpg';
+                    break;
+            }
+        }
 
         // 傳入當前的 group，以便從正確的資料集取資料
         function Generation_change(enGen, currentGroup) {
@@ -379,11 +484,11 @@
                 <div class="row ">
                     <div class="col-md-6 text-center">
                         <div>${idol1.Name}</div>
-                        <img src="${idol1.img}" class=" mt-2 mb-3" style="width:300px" alt="${idol1.Name}" onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',1)">
+                        <img src="${idol1.img}" class=" mt-2 mb-3" style="width:300px" alt="${idol1.Name}" onerror="Default_Img(this,'${group}')" onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',1)">
                     </div>
                     <div class="col-md-6 text-center">
                         <div>${idol2.Name}</div>
-                        <img src="${idol2.img}" class=" mt-2 mb-3" style="width:300px" alt="${idol2.Name}" onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',2)">
+                        <img src="${idol2.img}" class=" mt-2 mb-3" style="width:300px" alt="${idol2.Name}" onerror="Default_Img(this,'${group}')" onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',2)">
                     </div>
                 </div>
 

@@ -181,5 +181,142 @@
             "En_Name": "Yamada_Momomi",
             "Img_Path": "./img/sakurazaka46/Yamada_Momomi.jpg"
         }
+    ],
+    [
+        {
+            "Generation": "畢業生-櫸坂46一期生",
+            "En_Gen": "graduate_kz_1"
+        },
+        {
+            "Name": "鈴木泉帆",
+            "En_Name": "Suzuki_Mizuho",
+            "Img_Path": "./img/sakurazaka46/SuzukiMizuho.jpg"
+        },
+        {
+            "Name": "原田真由",
+            "En_Name": "Harada_Mayu",
+            "Img_Path": "./img/sakurazaka46/HaradaMayu.jpg"
+        },
+        {
+            "Name": "今泉佑唯",
+            "En_Name": "Imaizumi_Yui",
+            "Img_Path": "./img/sakurazaka46/ImaizumiYui.jpg"
+        },
+        {
+            "Name": "志田愛佳",
+            "En_Name": "Shida_Manaka",
+            "Img_Path": "./img/sakurazaka46/ShidaManaka.jpg"
+        },
+        {
+            "Name": "米谷奈奈未",
+            "En_Name": "Yonetani_Nanami",
+            "Img_Path": "./img/sakurazaka46/YonetaniNanami.jpg"
+        },
+        {
+            "Name": "長濱禰留",
+            "En_Name": "Nagahama_Neru",
+            "Img_Path": "./img/sakurazaka46/NagahamaNeru.jpg"
+        },
+        {
+            "Name": "織田奈那",
+            "En_Name": "Oda_Nana",
+            "Img_Path": "./img/sakurazaka46/OdaNana.jpg"
+        },
+        {
+            "Name": "鈴本美愉",
+            "En_Name": "Suzumoto_Miyu",
+            "Img_Path": "./img/sakurazaka46/SuzumotoMiyu.jpg"
+        },
+        {
+            "Name": "平手友梨奈",
+            "En_Name": "Hirate_Yurina",
+            "Img_Path": "./img/sakurazaka46/HirateYurina.jpg"
+        },
+        {
+            "Name": "長澤菜菜香",
+            "En_Name": "Nagasawa_Nanako",
+            "Img_Path": "./img/sakurazaka46/NagasawaNanako.jpg"
+        },
+        {
+            "Name": "石森虹花",
+            "En_Name": "Ishimori_Nijika",
+            "Img_Path": "./img/sakurazaka46/IshimoriNijika.jpg"
+        },
+        {
+            "Name": "佐藤詩織",
+            "En_Name": "Sato_Shiori",
+            "Img_Path": "./img/sakurazaka46/SatoShiori.jpg"
+        },
+        {
+            "Name": "守屋茜",
+            "En_Name": "Akane_Moriya",
+            "Img_Path": "./img/sakurazaka46/AkaneMoriya.jpg"
+        },
+        {
+            "Name": "渡邊梨加",
+            "En_Name": "Rika_Watanabe",
+            "Img_Path": "./img/sakurazaka46/RikaWatanabe.jpg"
+        },
+        {
+            "Name": "渡邊理佐",
+            "En_Name": "Risa_Watanabe",
+            "Img_Path": "./img/sakurazaka46/RisaWatanabe.jpg"
+        },
+        {
+            "Name": "原田葵",
+            "En_Name": "Aoi_Harada",
+            "Img_Path": "./img/sakurazaka46/AoiHarada.jpg"
+        },
+        {
+            "Name": "尾關梨香",
+            "En_Name": "Rika_Ozeki",
+            "Img_Path": "./img/sakurazaka46/RikaOzeki.jpg"
+        },
+        {
+            "Name": "菅井友香",
+            "En_Name": "Yuka_Sugai",
+            "Img_Path": "./img/sakurazaka46/YukaSugai.jpg"
+        },
+        {
+            "Name": "土生瑞穗",
+            "En_Name": "Mizuho_Habu",
+            "Img_Path": "./img/sakurazaka46/MizuhoHabu.jpg"
+        },
+        {
+            "Name": "小林由依",
+            "En_Name": "Yui_Kobayashi",
+            "Img_Path": "./img/sakurazaka46/YuiKobayashi.jpg"
+        },
+        {
+            "Name": "齋藤冬優花",
+            "En_Name": "Fuyuka_Saito",
+            "Img_Path": "./img/sakurazaka46/FuyukaSaito.jpg"
+        },
+        {
+            "Name": "上村莉菜",
+            "En_Name": "Rina_Uemura",
+            "Img_Path": "./img/sakurazaka46/RinaUemura.jpg"
+        },
+        {
+            "Name": "小池美波",
+            "En_Name": "Minami_Koike",
+            "Img_Path": "./img/sakurazaka46/MinamiKoike.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "畢業生-櫻坂46二期生",
+            "En_Gen": "graduate_sk_2"
+        },
+        {
+            "Name": "松平璃子",
+            "En_Name": "Riko_Matsudaira",
+            "Img_Path": "./img/sakurazaka46/RikoMatsudaira.jpg"
+        },
+        {
+            "Name": "關有美子",
+            "En_Name": "Yumiko_Seki",
+            "Img_Path": "./img/sakurazaka46/YumikoSeki.jpg"
+        }
     ]
 ]

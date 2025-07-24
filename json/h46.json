@@ -1,52 +1,6 @@
 [
     [
         {
-            "Generation": "日向坂46一期生",
-            "En_Gen": "hz_1"
-        },
-        {
-            "Name": "潮紗理菜",
-            "En_Name": "Sarina_Ushio",
-            "Img_Path": "./img/hinatazaka46/SarinaUshio.jpg"
-        },
-        {
-            "Name": "加藤史帆",
-            "En_Name": "Shiho_Kato",
-            "Img_Path": "./img/hinatazaka46/ShihoKato.jpg"
-        },
-        {
-            "Name": "齊藤京子",
-            "En_Name": "Kyoko_Saito",
-            "Img_Path": "./img/hinatazaka46/KyokoSaito.jpg"
-        },
-        {
-            "Name": "佐々木久美",
-            "En_Name": "Kumi_Sasaki",
-            "Img_Path": "./img/hinatazaka46/KumiSasaki.jpg"
-        },
-        {
-            "Name": "佐々木美玲",
-            "En_Name": "Mirei_Sasaki",
-            "Img_Path": "./img/hinatazaka46/MireiSasaki.jpg"
-        },
-        {
-            "Name": "高瀬愛奈",
-            "En_Name": "Mana_Takase",
-            "Img_Path": "./img/hinatazaka46/ManaTakase.jpg"
-        },
-        {
-            "Name": "高本彩花",
-            "En_Name": "Ayaka_Takase",
-            "Img_Path": "./img/hinatazaka46/AyakaTakase.jpg"
-        },
-        {
-            "Name": "東村芽依",
-            "En_Name": "Mei_Higashimura",
-            "Img_Path": "./img/hinatazaka46/MeiHigashimura.jpg"
-        }
-    ],
-    [
-        {
             "Generation": "日向坂46二期生",
             "En_Gen": "hz_2"
         },
@@ -71,29 +25,9 @@
             "Img_Path": "./img/hinatazaka46/SuzukaTomita.jpg"
         },
         {
-            "Name": "丹生明里",
-            "En_Name": "Akari_Nibu",
-            "Img_Path": "./img/hinatazaka46/AkariNibu.jpg"
-        },
-        {
-            "Name": "濱岸ひより",
-            "En_Name": "Hiyori_Hamagishi",
-            "Img_Path": "./img/hinatazaka46/HiyoriHamagishi.jpg"
-        },
-        {
             "Name": "松田好花",
             "En_Name": "Konoka_Matsuda",
             "Img_Path": "./img/hinatazaka46/KonokaMatsuda.jpg"
-        },
-        {
-            "Name": "宮田愛萌",
-            "En_Name": "Manamo_Miyata",
-            "Img_Path": "./img/hinatazaka46/ManamoMiyata.jpg"
-        },
-        {
-            "Name": "渡邉美穂",
-            "En_Name": "Miho_Watanabe",
-            "Img_Path": "./img/hinatazaka46/MihoWatanabe.jpg"
         }
     ],
     [
@@ -107,14 +41,14 @@
             "Img_Path": "./img/hinatazaka46/HinanoKamimura.jpg"
         },
         {
-            "Name": "髙橋未来虹",
+            "Name": "髙橋未來虹",
             "En_Name": "Mikuni_Takahashi",
             "Img_Path": "./img/hinatazaka46/MikuniTakahashi.jpg"
         },
         {
             "Name": "森本茉莉",
             "En_Name": "Mari_Morimoto",
-            "Img_Path": "./img/hinatazaka46/MariMorimoto.jpg"
+            "Img_Path": "./img/hinatazaka46/MarieMorimoto.jpg"
         },
         {
             "Name": "山口陽世",
@@ -128,12 +62,12 @@
             "En_Gen": "hz_4"
         },
         {
-            "Name": "石塚瑶季",
+            "Name": "石塚瑤季",
             "En_Name": "Tamaki_Ishizuka",
             "Img_Path": "./img/hinatazaka46/TamakiIshizuka.jpg"
         },
         {
-            "Name": "小西夏菜実",
+            "Name": "小西夏菜實",
             "En_Name": "Nanami_Konishi",
             "Img_Path": "./img/hinatazaka46/NanamiKonishi.jpg"
         },
@@ -148,9 +82,14 @@
             "Img_Path": "./img/hinatazaka46/YokoShogenji.jpg"
         },
         {
-            "Name": "竹内希来里",
+            "Name": "竹內希來里",
             "En_Name": "Kirari_Takeuchi",
             "Img_Path": "./img/hinatazaka46/KirariTakeuchi.jpg"
+        },
+        {
+            "Name": "平尾帆夏",
+            "En_Name": "Honoka_Hirao",
+            "Img_Path": "./img/hinatazaka46/HonokaHirao.jpg"
         },
         {
             "Name": "平岡海月",
@@ -158,7 +97,7 @@
             "Img_Path": "./img/hinatazaka46/MitsukiHiraoka.jpg"
         },
         {
-            "Name": "藤嶌果歩",
+            "Name": "藤嶌果步",
             "En_Name": "Kaho_Fujishima",
             "Img_Path": "./img/hinatazaka46/KahoFujishima.jpg"
         },
@@ -173,7 +112,7 @@
             "Img_Path": "./img/hinatazaka46/HarukaYamashita.jpg"
         },
         {
-            "Name": "渡辺莉奈",
+            "Name": "渡邊莉奈",
             "En_Name": "Rina_Watanabe",
             "Img_Path": "./img/hinatazaka46/RinaWatanabe.jpg"
         }
@@ -232,6 +171,109 @@
             "Name": "松尾櫻",
             "En_Name": "Matsuo_Sakura",
             "Img_Path": "./img/hinatazaka46/Matsuo_Sakura.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "畢業生-日向坂46一期生",
+            "En_Gen": "gruate_hz_1"
+        },
+        {
+            "Name": "長濱禰留",
+            "En_Name": "Neru_Nagahama",
+            "Img_Path": "./img/hinatazaka46/NeruNagahama.jpg"
+        },
+        {
+            "Name": "柿崎芽實",
+            "En_Name": "Memi_Kakizaki",
+            "Img_Path": "./img/hinatazaka46/MemiKakizaki.jpg"
+        },
+        {
+            "Name": "井口真緒",
+            "En_Name": "Mao_Iguchi",
+            "Img_Path": "./img/hinatazaka46/MaoIguchi.jpg"
+        },
+        {
+            "Name": "影山優佳",
+            "En_Name": "Yuka_Kageyama",
+            "Img_Path": "./img/hinatazaka46/YukaKageyama.jpg"
+        },
+        {
+            "Name": "潮紗理菜",
+            "En_Name": "Sarina_Ushio",
+            "Img_Path": "./img/hinatazaka46/SarinaUshio.jpg"
+        },
+        {
+            "Name": "加藤史帆",
+            "En_Name": "Shiho_Kato",
+            "Img_Path": "./img/hinatazaka46/ShihoKato.jpg"
+        },
+        {
+            "Name": "齊藤京子",
+            "En_Name": "Kyoko_Saito",
+            "Img_Path": "./img/hinatazaka46/KyokoSaito.jpg"
+        },
+        {
+            "Name": "佐佐木久美",
+            "En_Name": "Kumi_Sasaki",
+            "Img_Path": "./img/hinatazaka46/KumiSasaki.jpg"
+        },
+        {
+            "Name": "佐佐木美玲",
+            "En_Name": "Mirei_Sasaki",
+            "Img_Path": "./img/hinatazaka46/MireiSasaki.jpg"
+        },
+        {
+            "Name": "高瀬愛奈",
+            "En_Name": "Mana_Takase",
+            "Img_Path": "./img/hinatazaka46/ManaTakase.jpg"
+        },
+        {
+            "Name": "高本彩花",
+            "En_Name": "Ayaka_Takase",
+            "Img_Path": "./img/hinatazaka46/AyakaTakase.jpg"
+        },
+        {
+            "Name": "東村芽依",
+            "En_Name": "Mei_Higashimura",
+            "Img_Path": "./img/hinatazaka46/MeiHigashimura.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "畢業生-日向坂46二期生",
+            "En_Gen": "gruate_hz_2"
+        },
+        {
+            "Name": "宮田愛萌",
+            "En_Name": "Manamo_Miyata",
+            "Img_Path": "./img/hinatazaka46/ManamoMiyata.jpg"
+        },
+        {
+            "Name": "渡邊美穗",
+            "En_Name": "Miho_Watanabe",
+            "Img_Path": "./img/hinatazaka46/MihoWatanabe.jpg"
+        },
+        {
+            "Name": "丹生明里",
+            "En_Name": "Akari_Nibu",
+            "Img_Path": "./img/hinatazaka46/AkariNibu.jpg"
+        },
+        {
+            "Name": "濱岸ひより",
+            "En_Name": "Hiyori_Hamagishi",
+            "Img_Path": "./img/hinatazaka46/HiyoriHamagishi.jpg"
+        }
+    ],
+    [
+        {
+            "Generation": "畢業生-日向坂46四期生",
+            "En_Gen": "gruate_hz_4"
+        },
+        {
+            "Name": "岸帆夏",
+            "En_Name": "Honoka_Kishi",
+            "Img_Path": "./img/hinatazaka46/Honoka_Kishi.jpg"
         }
     ]
 ]
