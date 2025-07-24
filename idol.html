@@ -154,6 +154,18 @@
         let result_html = '';
         var need_play_around;
         let group;
+        $("#main").dblclick(function () {
+            let password = window.prompt('輸入密碼');
+            if (password == "464646") {
+                alert('AV Sort!!')
+
+                window.location = "./idol.html?group=secrect";
+            }
+            else {
+                alert('密碼錯誤!!')
+            }
+
+        })
         document.addEventListener('DOMContentLoaded', function () {
             const urlParams = new URLSearchParams(window.location.search);
             group = urlParams.get('group') || 'n46'; // 預設載入 Nogizaka46
@@ -175,7 +187,8 @@
                 'db': { title: 'Dragon Beauties', color: 'red', openBtnColor: 'black' },
                 'ug': { title: 'Uni Girls', color: 'orange', openBtnColor: 'black' },
                 'ws': { title: 'WING STARS', color: 'green', openBtnColor: 'black' },
-                'cpbl': { title: 'CPBL GIRLS', color: 'pink', openBtnColor: 'black' }
+                'cpbl': { title: 'CPBL GIRLS', color: 'pink', openBtnColor: 'black' },
+                'secrect': { title: 'Secrect Actors', color: 'violet', openBtnColor: 'black' },
             };
 
             const config = groupConfigs[group];
