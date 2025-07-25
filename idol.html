@@ -13,8 +13,8 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js"
         integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <style>
-        :root {
-            --rainbow-gradient: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+        .pic {
+            width: 200px;
         }
 
         /* The sidebar menu */
@@ -124,7 +124,7 @@
         <hr>
     </div>
     <div id="content"></div>
-    <div id="result"></div>
+    <div id="result" class="container"></div>
 
     <div class="button-area" style="text-align: center; margin-top: 20px;">
         <button id="startButton" disabled style="
@@ -498,13 +498,13 @@
                 </div>
 
                 <div class="row ">
-                    <div class="col-md-6 text-center">
+                    <div class="col-6 text-center">
                         <div>${idol1.Name}</div>
-                        <img src="${idol1.img}" class=" mt-2 mb-3" style="width:300px" alt="${idol1.Name}" onerror="Default_Img(this,'${group}')" onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',1)">
+                        <img src="${idol1.img}" class=" mt-2 mb-3 w-sm-100 w-75" style="width:300px" alt="${idol1.Name}" onerror="Default_Img(this,'${group}')" onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',1)">
                     </div>
-                    <div class="col-md-6 text-center">
+                    <div class="col-6 text-center">
                         <div>${idol2.Name}</div>
-                        <img src="${idol2.img}" class=" mt-2 mb-3" style="width:300px" alt="${idol2.Name}" onerror="Default_Img(this,'${group}')" onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',2)">
+                        <img src="${idol2.img}" class=" mt-2 mb-3 w-sm-100 w-75" style="width:300px" alt="${idol2.Name}" onerror="Default_Img(this,'${group}')" onclick="selectWin('${idol1.En_Name}','${idol2.En_Name}',2)">
                     </div>
                 </div>
 
@@ -629,6 +629,7 @@
                 <table class="table">
                     <tr>
                         <th>排名</th>
+                        <th>圖片</th>
                         <th>成員</th>
                         <th>Point</th>
                     </tr>
@@ -637,6 +638,7 @@
                 ranking_html += `
                         <tr>
                             <td>${index + 1}</td>
+                            <td><img class="pic" src="${mem.img}"></td>
                             <td>${mem.Name}</td>
                             <td>${mem.Point}</td>
                         </tr>
