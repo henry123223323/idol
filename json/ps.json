@@ -168,6 +168,16 @@
             "Name": "桃子",
             "En_Name": "Momoko",
             "Img_Path": "./img/passionsisters/Momoko.jpg"
+        },
+        {
+            "Name": "金渡兒",
+            "En_Name": "Kim_Doa",
+            "Img_Path": "./img/passionsisters/Kim_Doa.jpg"
+        },
+        {
+            "Name": "JJUBI",
+            "En_Name": "JJUBI",
+            "Img_Path": "./img/passionsisters/JJUBI.jpg"
         }
     ]
 ]
