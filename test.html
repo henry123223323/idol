@@ -3,157 +3,376 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>偶像瑞士制比賽</title>
-    <link rel="icon" href="./img/nogiicon.png" type="image/png">
-    <link rel="stylesheet" href="./css/bootstrap.css">
-    <script src="./js/bootstrap.bundle.js"></script>
+    <title>Brawl Stars Trophy Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Arial", sans-serif;
+            background-color: #F5F5F5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ED1C24;
             text-align: center;
+            margin-bottom: 20px;
         }
 
-        .match-container {
-            margin-top: 20px;
+        #brawlers-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
         }
 
-        .idol-img {
-            width: 150px;
-            height: 150px;
-            cursor: pointer;
-            margin: 10px;
-            border: 3px solid transparent;
-            transition: 0.2s;
+        .brawler-card {
+            padding: 15px;
+            border-radius: 10px;
+            width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: white;
         }
 
-        .idol-img:hover {
-            border-color: blue;
+        /* 稀有度顏色樣式 */
+        .Rarity_StarrRoad {
+            background-color: #5d9333;
         }
 
-        .result-btn {
-            display: block;
-            margin: 10px auto;
+        /* 初始英雄 */
+        .Rarity_Rare {
+            background-color: #55b2d7;
+        }
+
+        .Rarity_SuperRare {
+            background-color: #9253c6;
+        }
+
+        .Rarity_Epic {
+            background-color: #d15664;
+        }
+
+        .Rarity_Mythic {
+            background-color: #d88e00;
+        }
+
+        .Rarity_Legendary {
+            background-color: #ffde1f;
+            color: #333;
+        }
+
+        /* 特別為你的超傳奇稀有度設定與傳奇相同顏色 */
+        .Rarity_UltraLegendary {
+            background-color: #555555;
+            color: #fff;
+        }
+
+
+        .brawler-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .brawler-card.Rarity_Legendary .brawler-name,
+        .brawler-card.Rarity_UltraLegendary .brawler-name {
+            color: #333;
+        }
+
+        .brawler-info {
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+
+        .control-panel {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        button {
             padding: 10px 20px;
-            font-size: 16px;
+            background-color: #ED1C24;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
             cursor: pointer;
+            margin: 0 5px;
+        }
+
+        button:hover {
+            background-color: #C8102E;
+        }
+
+        .form-switch {
+            margin-left: 20px;
+        }
+
+        #trophy-slider-container {
+            margin: 15px 0;
+        }
+
+        #trophy-slider-container label {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        #basic_info {
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
-    <h1>偶像瑞士制比賽</h1>
-    <div id="match-container" class="match-container"></div>
-    <div id="ranking"></div>
+    <h1>Brawl Stars Trophy Calculator</h1>
+    <div class="control-panel">
+        <input type="text" id="player_id" value="92CJRCL">
+        <button id="btnFetch">取得玩家資料</button>
+        <hr>
+        <button id="btnSortTrophies" class="btn-sort" data-sort-key="trophies" data-sort-order="desc">按獎盃排序 ↓</button>
+        <button id="btnSortHighestTrophies" class="btn-sort" data-sort-key="highestTrophies"
+            data-sort-order="desc">按最高獎盃排序 ↓</button>
+        <button id="btnSortRarity" class="btn-sort" data-sort-key="rarity" data-sort-order="desc">按稀有度排序 ↓</button>
+        <div class="form-check form-switch d-inline-block ms-3">
+            <input class="form-check-input" type="checkbox" id="languageSwitch" checked>
+            <label class="form-check-label" for="languageSwitch">顯示中文名稱</label>
+        </div>
+        <div id="trophy-slider-container">
+            <label for="trophySlider">目標獎盃數: </label>
+            <span id="trophyValue">550</span>
+            <input type="range" class="form-range w-25" id="trophySlider" min="500" max="2000" value="550">
+        </div>
+    </div>
+
+    <div id="basic_info"></div>
+    <div id="brawlers-container"></div>
 
     <script>
-        let idols = Array.from({ length: 29 }, (_, i) => (
-            {
-                id: i,
-                name: `Idol ${i + 1}`,
-                points: 0,
-                opponents: [],
-                img: `https://via.placeholder.com/150?text=Idol+${i + 1}`
-            }));
+        const brawlers_luanguages = {
+            "SHELLY": "雪莉", "COLT": "柯爾特", "BULL": "公牛", "BROCK": "布洛克", "RICO": "瑞科", "SPIKE": "史派克",
+            "BARLEY": "巴利", "JESSIE": "潔西", "NITA": "妮塔", "DYNAMIKE": "爆破麥克", "EL PRIMO": "艾爾普里莫",
+            "MORTIS": "莫提斯", "CROW": "鴉", "POCO": "波可", "BO": "寶", "PIPER": "派佩", "PAM": "潘姆", "TARA": "塔拉",
+            "DARRYL": "達里爾", "PENNY": "潘妮", "FRANK": "法蘭克", "GENE": "吉恩", "TICK": "提克", "LEON": "里昂",
+            "ROSA": "蘿莎", "CARL": "卡爾", "BIBI": "比比", "8-BIT": "比特八號", "SANDY": "沙迪", "BEA": "貝亞",
+            "EMZ": "艾爾莎", "MR. P": "P先生", "MAX": "麥克絲", "JACKY": "賈姬", "GALE": "蓋爾", "NANI": "妮妮",
+            "SPROUT": "芽芽", "SURGE": "瑟奇", "COLETTE": "柯蕾特", "AMBER": "琥珀", "LOU": "羅", "BYRON": "拜倫",
+            "EDGAR": "艾德加", "RUFFS": "拉夫", "STU": "史都", "BELLE": "貝爾", "SQUEAK": "史奎克", "GROM": "格羅姆",
+            "BUZZ": "巴茲", "GRIFF": "葛里夫", "ASH": "阿拾", "MEG": "麥格", "LOLA": "蘿拉", "FANG": "方", "EVE": "伊芙",
+            "JANET": "珍娜", "BONNIE": "邦妮", "OTIS": "奧提斯", "SAM": "山姆", "GUS": "格斯", "CHESTER": "奇士",
+            "GRAY": "葛雷", "MANDY": "曼蒂", "WILLOW": "薇婁", "HANK": "漢克", "DOUG": "道格", "PEARL": "佩爾",
+            "CHARLIE": "查理", "MICO": "米可", "KIT": "基特", "LARRY & LAWRIE": "賴瑞與萊瑞", "ANGELO": "安杰洛",
+            "BERRY": "貝瑞", "SHADE": "希德", "MEEPLE": "瞇寶", "MAISIE": "梅西"
+        };
 
-        let round = 1;
-        let matches = [];
-        let currentMatchIndex = 0;
-        const need_play_around = Math.ceil(getBaseLog(2, idols.length) + 1)
-        function getBaseLog(x, y) {
-            return Math.log(y) / Math.log(x);
+        const brawlerRarities = [
+            // 初始英雄 (Common) -> 對應為 Rarity_StarrRoad
+            { name: "SHELLY", rarity: "Rarity_StarrRoad" },
+            // 稀有 (Rare)
+            { name: "NITA", rarity: "Rarity_Rare" },
+            { name: "BULL", rarity: "Rarity_Rare" },
+            { name: "COLT", rarity: "Rarity_Rare" },
+            { name: "BROCK", rarity: "Rarity_Rare" },
+            { name: "EL PRIMO", rarity: "Rarity_Rare" },
+            { name: "POCO", rarity: "Rarity_Rare" },
+            { name: "BARLEY", rarity: "Rarity_Rare" },
+            { name: "ROSA", rarity: "Rarity_Rare" },
+            // 超稀有 (Super Rare)
+            { name: "JESSIE", rarity: "Rarity_SuperRare" },
+            { name: "DYNAMIKE", rarity: "Rarity_SuperRare" },
+            { name: "8-BIT", rarity: "Rarity_SuperRare" },
+            { name: "RICO", rarity: "Rarity_SuperRare" },
+            { name: "CARL", rarity: "Rarity_SuperRare" },
+            { name: "JACKY", rarity: "Rarity_SuperRare" },
+            { name: "TICK", rarity: "Rarity_SuperRare" },
+            { name: "PENNY", rarity: "Rarity_SuperRare" },
+            { name: "DARRYL", rarity: "Rarity_SuperRare" },
+            { name: "GUS", rarity: "Rarity_SuperRare" },
+            // 史詩 (Epic)
+            { name: "BO", rarity: "Rarity_Epic" },
+            { name: "EMZ", rarity: "Rarity_Epic" },
+            { name: "STU", rarity: "Rarity_Epic" },
+            { name: "PIPER", rarity: "Rarity_Epic" },
+            { name: "PAM", rarity: "Rarity_Epic" },
+            { name: "FRANK", rarity: "Rarity_Epic" },
+            { name: "BIBI", rarity: "Rarity_Epic" },
+            { name: "BEA", rarity: "Rarity_Epic" },
+            { name: "GALE", rarity: "Rarity_Epic" },
+            { name: "COLETTE", rarity: "Rarity_Epic" },
+            { name: "BELLE", rarity: "Rarity_Epic" },
+            { name: "ASH", rarity: "Rarity_Epic" },
+            { name: "LOLA", rarity: "Rarity_Epic" },
+            { name: "SAM", rarity: "Rarity_Epic" },
+            { name: "MANDY", rarity: "Rarity_Epic" },
+            { name: "MAISIE", rarity: "Rarity_Epic" },
+            { name: "HANK", rarity: "Rarity_Epic" },
+            { name: "PEARL", rarity: "Rarity_Epic" },
+            { name: "LARRY & LAWRIE", rarity: "Rarity_Epic" },
+            { name: "ANGELO", rarity: "Rarity_Epic" },
+            { name: "MOE", rarity: "Rarity_Epic" },
+            { name: "CHUCK", rarity: "Rarity_Epic" },
+            { name: "CHARLIE", rarity: "Rarity_Epic" },
+            { name: "GRAY", rarity: "Rarity_Epic" },
+            { name: "FANG", rarity: "Rarity_Epic" },
+            { name: "EVE", rarity: "Rarity_Epic" },
+            { name: "JANET", rarity: "Rarity_Epic" },
+            { name: "OTIS", rarity: "Rarity_Epic" },
+            { name: "GRIFF", rarity: "Rarity_Epic" },
+            { name: "GROM", rarity: "Rarity_Epic" },
+            { name: "SQUEAK", rarity: "Rarity_Epic" },
+            { name: "SPROUT", rarity: "Rarity_Epic" },
+            { name: "APPLE", rarity: "Rarity_Epic" },
+            // 傳奇 (Legendary)
+            { name: "AMBER", rarity: "Rarity_Legendary" },
+            { name: "KENJI", rarity: "Rarity_Legendary" },
+            { name: "LEON", rarity: "Rarity_Legendary" },
+            { name: "CROW", rarity: "Rarity_Legendary" },
+            { name: "SPIKE", rarity: "Rarity_Legendary" },
+            { name: "SANDY", rarity: "Rarity_Legendary" },
+            { name: "KIT", rarity: "Rarity_Legendary" },
+            { name: "CORDELIUS", rarity: "Rarity_Legendary" },
+            { name: "CHESTER", rarity: "Rarity_Legendary" },
+            { name: "DRACO", rarity: "Rarity_Legendary" },
+            { name: "SUZIE", rarity: "Rarity_Legendary" },
+            // 超傳奇 (Ultra Legendary) -> 對應為 Rarity_UltraLegendary
+            { name: "KAZE", rarity: "Rarity_UltraLegendary" }
+        ];
+
+        const rarityOrder = [
+            'Rarity_StarrRoad',
+            'Rarity_Rare',
+            'Rarity_SuperRare',
+            'Rarity_Epic',
+            'Rarity_Legendary',
+            'Rarity_UltraLegendary'
+        ];
+
+        function getRarityClassName(brawlerName) {
+            const brawler = brawlerRarities.find(item => item.name.toUpperCase() === brawlerName.toUpperCase());
+            return brawler ? brawler.rarity : 'Rarity_StarrRoad';
         }
-        function startRound() {
-            if (round > need_play_around) {
-                showRanking();
-                return;
+
+        const btnFetch = document.getElementById("btnFetch");
+        const container = document.getElementById("brawlers-container");
+        let brawlerData = [];
+        let wanttoTrp = 550; // 將其設為 let，以便可以動態修改
+        let isChinese = true;
+
+        // 獲取滑桿和顯示值的元素
+        const trophySlider = document.getElementById("trophySlider");
+        const trophyValueSpan = document.getElementById("trophyValue");
+
+        // 當滑桿值改變時更新 wanttoTrp 並重新渲染
+        trophySlider.addEventListener("input", (event) => {
+            wanttoTrp = parseInt(event.target.value);
+            trophyValueSpan.textContent = wanttoTrp;
+            if (brawlerData.length > 0) {
+                renderBrawlers(brawlerData);
             }
+        });
 
-            idols.sort((a, b) => b.points - a.points);
-            matches = [];
-            let paired = new Set();
+        function renderBrawlers(brawlers) {
+            container.innerHTML = "";
+            let totalTrophies = 0;
+            let totalTrophiesToTarget = 0;
 
-            for (let i = 0; i < idols.length; i++) {
-                let idol1 = idols[i];
+            brawlers.forEach(b => {
+                totalTrophies += b.trophies;
+                const trophiesNeeded = b.trophies < wanttoTrp ? wanttoTrp - b.trophies : 0;
+                totalTrophiesToTarget += trophiesNeeded;
 
-                if (paired.has(idol1.id)) continue;
+                const card = document.createElement("div");
+                const rarityClass = getRarityClassName(b.name);
+                card.className = `brawler-card ${rarityClass}`;
 
-                for (let j = i + 1; j < idols.length; j++) {
-                    let idol2 = idols[j];
+                const brawlerNameDisplay = isChinese ? (brawlers_luanguages[b.name.toUpperCase()] || b.name) : b.name;
 
-                    if (!paired.has(idol2.id) && !idol1.opponents.includes(idol2.id)) {
-                        idol1.opponents.push(idol2.id);
-                        idol2.opponents.push(idol1.id);
-                        paired.add(idol1.id);
-                        paired.add(idol2.id);
-                        matches.push([idol1, idol2]);
-                        break;
-                    }
-                }
-            }
-
-            let unpaired = idols.find(idol => !paired.has(idol.id));
-            if (unpaired) {
-                unpaired.points += 3;
-            }
-
-            currentMatchIndex = 0;
-            displayMatch();
-        }
-
-        function displayMatch() {
-            if (currentMatchIndex >= matches.length) {
-                round++;
-                startRound();
-                return;
-            }
-
-            let [idol1, idol2] = matches[currentMatchIndex];
-            let matchContainer = document.getElementById("match-container");
-            let percent = ((round - 1) * (idols.length / 2) + currentMatchIndex + 1) / (need_play_around * (idols.length / 2)) * 100
-            matchContainer.innerHTML = `
-            <h2>${percent.toFixed(2)}%</h2>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: ${percent}%"></div>
-                </div>
-                <h2>第 ${round} 輪 - 第 ${currentMatchIndex + 1} 場比賽</h2>
-                <div>
-                    <img src="./img/nogiicon.png" class="idol-img" onclick="selectWinner(${idol1.id}, ${idol2.id}, 1)">
-                    <img src="./img/nogiicon.png" class="idol-img" onclick="selectWinner(${idol1.id}, ${idol2.id}, 2)">
-                </div>
-                <button class="result-btn" onclick="selectWinner(${idol1.id}, ${idol2.id}, 0)">平手</button>
-            `;
-        }
-
-        function selectWinner(id1, id2, result) {
-            let idol1 = idols.find(idol => idol.id === id1);
-            let idol2 = idols.find(idol => idol.id === id2);
-
-            if (result === 1) {
-                idol1.points += 3;
-            } else if (result === 2) {
-                idol2.points += 3;
-            } else {
-                idol1.points += 1;
-                idol2.points += 1;
-            }
-
-            currentMatchIndex++;
-            displayMatch();
-        }
-
-        function showRanking() {
-            idols.sort((a, b) => b.points - a.points);
-            let rankingHTML = "<h2>最終排名</h2><ol>";
-            idols.forEach(idol => {
-                rankingHTML += `<li>${idol.name} - ${idol.points} 分</li>`;
+                card.innerHTML = `
+                    <div class="brawler-name">${brawlerNameDisplay}</div>
+                    <div class="brawler-info">最高獎盃: ${b.highestTrophies}</div>
+                    <div class="brawler-info">獎盃: ${b.trophies}</div>
+                    <div class="brawler-info">到 ${wanttoTrp} 還需: ${trophiesNeeded}</div>
+                `;
+                container.appendChild(card);
             });
-            rankingHTML += "</ol>";
-            document.getElementById("ranking").innerHTML = rankingHTML;
+
+            $("#basic_info").html(`
+                <h2>現在的盃數: ${totalTrophies}</h2>
+                <h3>全部爬到${wanttoTrp}:${totalTrophies + totalTrophiesToTarget}</h3>
+            `);
         }
 
-        startRound();
+        btnFetch.addEventListener("click", () => {
+            container.innerHTML = "";
+            $("#basic_info").html("");
+            let id = $("#player_id").val();
+
+            fetch(`http://localhost:3000/player/${id}`)
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error('API 呼叫失敗，請確認玩家 ID 是否正確。');
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    if (data.brawlers && Array.isArray(data.brawlers)) {
+                        brawlerData = data.brawlers;
+                        renderBrawlers(brawlerData);
+                    } else {
+                        throw new Error('API 回應格式錯誤，請稍後再試。');
+                    }
+                })
+                .catch(err => {
+                    container.innerHTML = `<p style="color:red;">${err.message}</p>`;
+                });
+        });
+
+        document.getElementById("languageSwitch").addEventListener("change", (event) => {
+            isChinese = event.target.checked;
+            if (brawlerData.length > 0) {
+                renderBrawlers(brawlerData);
+            }
+        });
+
+        document.querySelectorAll('.btn-sort').forEach(button => {
+            button.addEventListener('click', (event) => {
+                if (brawlerData.length === 0) return;
+                const sortKey = event.target.dataset.sortKey;
+                let sortOrder = event.target.dataset.sortOrder;
+
+                if (sortOrder === 'desc') {
+                    event.target.dataset.sortOrder = 'asc';
+                    event.target.textContent = `按${sortKey === 'trophies' ? '獎盃' : (sortKey === 'highestTrophies' ? '最高獎盃' : '稀有度')}排序 ↑`;
+                } else {
+                    event.target.dataset.sortOrder = 'desc';
+                    event.target.textContent = `按${sortKey === 'trophies' ? '獎盃' : (sortKey === 'highestTrophies' ? '最高獎盃' : '稀有度')}排序 ↓`;
+                }
+
+                brawlerData.sort((a, b) => {
+                    if (sortKey === 'rarity') {
+                        const rarityA = getRarityClassName(a.name);
+                        const rarityB = getRarityClassName(b.name);
+                        const indexA = rarityOrder.indexOf(rarityA);
+                        const indexB = rarityOrder.indexOf(rarityB);
+                        let comparison = indexA - indexB;
+                        return sortOrder === 'desc' ? comparison * -1 : comparison;
+                    } else {
+                        let comparison = a[sortKey] - b[sortKey];
+                        return sortOrder === 'desc' ? comparison * -1 : comparison;
+                    }
+                });
+
+                renderBrawlers(brawlerData);
+            });
+        });
     </script>
 </body>
 
