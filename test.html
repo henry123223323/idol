@@ -125,10 +125,6 @@
             font-size: 1.1em;
             font-weight: bold;
         }
-
-        #basic_info {
-            text-align: center;
-        }
     </style>
 </head>
 
@@ -137,7 +133,6 @@
     <div class="control-panel">
         <input type="text" id="player_id" value="92CJRCL">
         <button id="btnFetch">取得玩家資料</button>
-        <hr>
         <button id="btnSortTrophies" class="btn-sort" data-sort-key="trophies" data-sort-order="desc">按獎盃排序 ↓</button>
         <button id="btnSortHighestTrophies" class="btn-sort" data-sort-key="highestTrophies"
             data-sort-order="desc">按最高獎盃排序 ↓</button>
@@ -263,14 +258,12 @@
         const btnFetch = document.getElementById("btnFetch");
         const container = document.getElementById("brawlers-container");
         let brawlerData = [];
-        let wanttoTrp = 550; // 將其設為 let，以便可以動態修改
+        let wanttoTrp = 550;
         let isChinese = true;
 
-        // 獲取滑桿和顯示值的元素
         const trophySlider = document.getElementById("trophySlider");
         const trophyValueSpan = document.getElementById("trophyValue");
 
-        // 當滑桿值改變時更新 wanttoTrp 並重新渲染
         trophySlider.addEventListener("input", (event) => {
             wanttoTrp = parseInt(event.target.value);
             trophyValueSpan.textContent = wanttoTrp;
@@ -283,6 +276,10 @@
             container.innerHTML = "";
             let totalTrophies = 0;
             let totalTrophiesToTarget = 0;
+
+            // 1. 從 localStorage 讀取上次的總獎盃數
+            const lastTrophiesString = localStorage.getItem('lastQueriedTrophies');
+            const lastTrophies = lastTrophiesString ? parseInt(lastTrophiesString, 10) : null;
 
             brawlers.forEach(b => {
                 totalTrophies += b.trophies;
@@ -304,10 +301,22 @@
                 container.appendChild(card);
             });
 
+            // 2. 計算獎盃數差異並準備顯示字串
+            let differenceText = "";
+            if (lastTrophies !== null) {
+                const trophyDifference = totalTrophies - lastTrophies;
+                const sign = trophyDifference >= 0 ? '+' : '';
+                const color = trophyDifference >= 0 ? 'green' : 'red';
+                differenceText = `<span style="color:${color};"> (${sign}${trophyDifference})</span>`;
+            }
+
             $("#basic_info").html(`
-                <h2>現在的盃數: ${totalTrophies}</h2>
+                <h2>現在的盃數: ${totalTrophies}${differenceText}</h2>
                 <h3>全部爬到${wanttoTrp}:${totalTrophies + totalTrophiesToTarget}</h3>
             `);
+
+            // 3. 將本次的總獎盃數儲存到 localStorage
+            localStorage.setItem('lastQueriedTrophies', totalTrophies);
         }
 
         btnFetch.addEventListener("click", () => {
