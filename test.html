@@ -118,7 +118,7 @@
         }
 
         #trophy-slider-container {
-            margin: 15px 0;
+            text-align: center;
         }
 
         #trophy-slider-container label {
@@ -131,24 +131,35 @@
 <body>
     <h1>Brawl Stars Trophy Calculator</h1>
     <div class="control-panel">
+        <label for="">輸入玩家id:</label>
         <input type="text" id="player_id" value="92CJRCL">
         <button id="btnFetch">取得玩家資料</button>
-        <button id="btnSortTrophies" class="btn-sort" data-sort-key="trophies" data-sort-order="desc">按獎盃排序 ↓</button>
-        <button id="btnSortHighestTrophies" class="btn-sort" data-sort-key="highestTrophies"
-            data-sort-order="desc">按最高獎盃排序 ↓</button>
-        <button id="btnSortRarity" class="btn-sort" data-sort-key="rarity" data-sort-order="desc">按稀有度排序 ↓</button>
-        <div class="form-check form-switch d-inline-block ms-3">
-            <input class="form-check-input" type="checkbox" id="languageSwitch" checked>
-            <label class="form-check-label" for="languageSwitch">顯示中文名稱</label>
+        <hr>
+
+
+        <div id="basic_info_0">
+            <h1 id="player_name" class="text-center"></h1>
         </div>
-        <div id="trophy-slider-container">
-            <label for="trophySlider">目標獎盃數: </label>
-            <span id="trophyValue">550</span>
-            <input type="range" class="form-range w-25" id="trophySlider" min="500" max="2000" value="550">
+        <div id="basic_info_1"></div>
+        <div id="search_result" class="d-none text-center">
+            <button id="btnSortTrophies" class="btn-sort" data-sort-key="trophies" data-sort-order="desc">按獎盃排序
+                ↓</button>
+            <button id="btnSortHighestTrophies" class="btn-sort" data-sort-key="highestTrophies"
+                data-sort-order="desc">按最高獎盃排序 ↓</button>
+            <button id="btnSortRarity" class="btn-sort" data-sort-key="rarity" data-sort-order="desc">按稀有度排序 ↓</button>
+            <div class="form-check form-switch d-inline-block ms-3 text-center">
+                <input class="form-check-input" type="checkbox" id="languageSwitch" checked>
+                <label class="form-check-label" for="languageSwitch">顯示中文名稱</label>
+            </div>
+            <div id="trophy-slider-container">
+                <label for="trophySlider">目標獎盃數: </label>
+                <span id="trophyValue">550</span>
+                <input type="range" class="form-range w-25" id="trophySlider" min="200" max="2000" value="550">
+            </div>
         </div>
     </div>
 
-    <div id="basic_info"></div>
+
     <div id="brawlers-container"></div>
 
     <script>
@@ -273,6 +284,8 @@
         });
 
         function renderBrawlers(brawlers) {
+            console.log(brawlers);
+
             container.innerHTML = "";
             let totalTrophies = 0;
             let totalTrophiesToTarget = 0;
@@ -293,10 +306,10 @@
                 const brawlerNameDisplay = isChinese ? (brawlers_luanguages[b.name.toUpperCase()] || b.name) : b.name;
 
                 card.innerHTML = `
-                    <div class="brawler-name">${brawlerNameDisplay}</div>
-                    <div class="brawler-info">最高獎盃: ${b.highestTrophies}</div>
-                    <div class="brawler-info">獎盃: ${b.trophies}</div>
-                    <div class="brawler-info">到 ${wanttoTrp} 還需: ${trophiesNeeded}</div>
+                    <div class="text-center brawler-name">${brawlerNameDisplay}</div>
+                    <div class="text-center brawler-info">最高獎盃: ${b.highestTrophies}</div>
+                    <div class="text-center brawler-info">獎盃: ${b.trophies}</div>
+                    <div class="text-center brawler-info">到 ${wanttoTrp} 還需: ${trophiesNeeded}</div>
                 `;
                 container.appendChild(card);
             });
@@ -310,9 +323,9 @@
                 differenceText = `<span style="color:${color};"> (${sign}${trophyDifference})</span>`;
             }
 
-            $("#basic_info").html(`
-                <h2>現在的盃數: ${totalTrophies}${differenceText}</h2>
-                <h3>全部爬到${wanttoTrp}:${totalTrophies + totalTrophiesToTarget}</h3>
+            $("#basic_info_1").html(`
+                <h2 class="text-center">現在的盃數: ${totalTrophies}${differenceText}</h2>
+                <h3 class="text-center">全部爬到${wanttoTrp}:${totalTrophies + totalTrophiesToTarget}</h3>
             `);
 
             // 3. 將本次的總獎盃數儲存到 localStorage
@@ -320,8 +333,11 @@
         }
 
         btnFetch.addEventListener("click", () => {
+            $("#search_result").removeClass("d-none")
+            $("#player_name").text(""); // 先清空玩家名稱，讓滾動效果更明顯
             container.innerHTML = "";
-            $("#basic_info").html("");
+            $("#basic_info_1").html("");
+
             let id = $("#player_id").val();
 
             fetch(`http://localhost:3000/player/${id}`)
@@ -332,9 +348,19 @@
                     return res.json();
                 })
                 .then(data => {
+                    console.log(data);
+
                     if (data.brawlers && Array.isArray(data.brawlers)) {
+                        // 更新預先存在的h1標籤的文字內容
+                        $("#player_name").text(data.name);
+
                         brawlerData = data.brawlers;
                         renderBrawlers(brawlerData);
+
+                        // *** 修改後的滾動程式碼，放在這裡才會生效！ ***
+                        // 在內容更新完成後，再滾動到 basic_info_0 區塊
+                        document.getElementById('basic_info_0').scrollIntoView({ behavior: 'smooth' });
+
                     } else {
                         throw new Error('API 回應格式錯誤，請稍後再試。');
                     }
@@ -343,7 +369,6 @@
                     container.innerHTML = `<p style="color:red;">${err.message}</p>`;
                 });
         });
-
         document.getElementById("languageSwitch").addEventListener("change", (event) => {
             isChinese = event.target.checked;
             if (brawlerData.length > 0) {
