@@ -11,6 +11,7 @@
         </script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"
         integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         body {
@@ -26,6 +27,11 @@
             margin-bottom: 20px;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         #brawlers-container {
             display: flex;
             flex-wrap: wrap;
@@ -33,21 +39,52 @@
             justify-content: center;
         }
 
+        .brawler-card-container {
+            perspective: 1000px;
+            position: relative;
+            width: 200px;
+            height: 220px;
+            cursor: pointer;
+        }
+
         .brawler-card {
             padding: 15px;
             border-radius: 10px;
-            width: 200px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
             color: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transition: transform 0.6s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* 稀有度顏色樣式 */
+        .brawler-card-back {
+            transform: rotateY(180deg);
+            background-color: #333;
+            color: #fff;
+            padding: 5px;
+        }
+
+        .brawler-card-container.flipped .brawler-card-front {
+            transform: rotateY(-180deg);
+        }
+
+        .brawler-card-container.flipped .brawler-card-back {
+            transform: rotateY(0deg);
+        }
+
         .Rarity_StarrRoad {
             background-color: #5d9333;
         }
 
-        /* 初始英雄 */
         .Rarity_Rare {
             background-color: #55b2d7;
         }
@@ -69,12 +106,10 @@
             color: #333;
         }
 
-        /* 特別為你的超傳奇稀有度設定與傳奇相同顏色 */
         .Rarity_UltraLegendary {
             background-color: #555555;
             color: #fff;
         }
-
 
         .brawler-name {
             font-size: 1.2em;
@@ -107,10 +142,19 @@
             font-size: 1em;
             cursor: pointer;
             margin: 0 5px;
+            transition: background-color 0.2s;
         }
 
         button:hover {
             background-color: #C8102E;
+        }
+
+        .btn-sort {
+            background-color: #4CAF50;
+        }
+
+        .btn-sort:hover {
+            background-color: #45a049;
         }
 
         .form-switch {
@@ -121,135 +165,350 @@
             text-align: center;
         }
 
-        #trophy-slider-container label {
-            font-size: 1.1em;
+        .trophy-diff {
+            font-size: 0.9em;
             font-weight: bold;
+        }
+
+        .trophy-diff.positive {
+            color: #28a745;
+        }
+
+        .trophy-diff.negative {
+            color: #dc3545;
+        }
+
+        .trophy-diff.zero {
+            color: #f8f9fa;
         }
     </style>
 </head>
 
 <body>
-    <h1>Brawl Stars Trophy Calculator</h1>
-    <div class="control-panel">
-        <label for="">輸入玩家id:</label>
-        <input type="text" id="player_id" value="92CJRCL">
-        <button id="btnFetch">取得玩家資料</button>
-        <hr>
+    <div class="container">
+        <h1>Brawl Stars 獎盃追蹤器</h1>
+        <div class="control-panel">
+            <label for="player_id">輸入玩家 ID:</label>
+            <input type="text" id="player_id" value="92CJRCL">
+            <button id="btnFetch">取得玩家資料</button>
+        </div>
 
-
-        <div id="basic_info_0">
-            <h1 id="player_name" class="text-center"></h1>
+        <div id="basic_info_0" class="text-center">
+            <h1 id="player_name"></h1>
         </div>
         <div id="basic_info_1"></div>
+
+        <hr>
+
         <div id="search_result" class="d-none text-center">
-            <button id="btnSortTrophies" class="btn-sort" data-sort-key="trophies" data-sort-order="desc">按獎盃排序
-                ↓</button>
-            <button id="btnSortHighestTrophies" class="btn-sort" data-sort-key="highestTrophies"
-                data-sort-order="desc">按最高獎盃排序 ↓</button>
-            <button id="btnSortRarity" class="btn-sort" data-sort-key="rarity" data-sort-order="desc">按稀有度排序 ↓</button>
+            <div class="btn-group mb-3" role="group">
+                <button id="btnSortTrophies" class="btn btn-sort" data-sort-key="trophies" data-sort-order="desc">獎盃排序
+                    ↓</button>
+                <button id="btnSortHighestTrophies" class="btn btn-sort" data-sort-key="highestTrophies"
+                    data-sort-order="desc">最高獎盃排序 ↓</button>
+                <button id="btnSortRarity" class="btn btn-sort" data-sort-key="rarity" data-sort-order="desc">稀有度排序
+                    ↓</button>
+                <button id="btnSortDiff" class="btn btn-sort" data-sort-key="trophy_diff" data-sort-order="desc">變動排序
+                    ↓</button>
+            </div>
             <div class="form-check form-switch d-inline-block ms-3 text-center">
                 <input class="form-check-input" type="checkbox" id="languageSwitch" checked>
                 <label class="form-check-label" for="languageSwitch">顯示中文名稱</label>
             </div>
-            <div id="trophy-slider-container">
+            <div id="trophy-slider-container" class="mt-3">
                 <label for="trophySlider">目標獎盃數: </label>
                 <span id="trophyValue">550</span>
-                <input type="range" class="form-range w-25" id="trophySlider" min="200" max="2000" value="550">
+                <input type="range" class="form-range w-50" id="trophySlider" min="200" max="2000" value="550">
             </div>
+        </div>
+
+        <div id="brawlers-container"></div>
+
+        <div id="chart-container" class="mt-5 d-none">
+            <hr>
+            <h2 class="text-center">總獎盃歷史記錄</h2>
+            <canvas id="trophyChart"></canvas>
         </div>
     </div>
 
-
-    <div id="brawlers-container"></div>
-
     <script>
         const brawlers_luanguages = {
-            "SHELLY": "雪莉", "COLT": "柯爾特", "BULL": "公牛", "BROCK": "布洛克", "RICO": "瑞科", "SPIKE": "史派克",
-            "BARLEY": "巴利", "JESSIE": "潔西", "NITA": "妮塔", "DYNAMIKE": "爆破麥克", "EL PRIMO": "艾爾普里莫",
-            "MORTIS": "莫提斯", "CROW": "鴉", "POCO": "波可", "BO": "寶", "PIPER": "派佩", "PAM": "潘姆", "TARA": "塔拉",
-            "DARRYL": "達里爾", "PENNY": "潘妮", "FRANK": "法蘭克", "GENE": "吉恩", "TICK": "提克", "LEON": "里昂",
-            "ROSA": "蘿莎", "CARL": "卡爾", "BIBI": "比比", "8-BIT": "比特八號", "SANDY": "沙迪", "BEA": "貝亞",
-            "EMZ": "艾爾莎", "MR. P": "P先生", "MAX": "麥克絲", "JACKY": "賈姬", "GALE": "蓋爾", "NANI": "妮妮",
-            "SPROUT": "芽芽", "SURGE": "瑟奇", "COLETTE": "柯蕾特", "AMBER": "琥珀", "LOU": "羅", "BYRON": "拜倫",
-            "EDGAR": "艾德加", "RUFFS": "拉夫", "STU": "史都", "BELLE": "貝爾", "SQUEAK": "史奎克", "GROM": "格羅姆",
-            "BUZZ": "巴茲", "GRIFF": "葛里夫", "ASH": "阿拾", "MEG": "麥格", "LOLA": "蘿拉", "FANG": "方", "EVE": "伊芙",
-            "JANET": "珍娜", "BONNIE": "邦妮", "OTIS": "奧提斯", "SAM": "山姆", "GUS": "格斯", "CHESTER": "奇士",
-            "GRAY": "葛雷", "MANDY": "曼蒂", "WILLOW": "薇婁", "HANK": "漢克", "DOUG": "道格", "PEARL": "佩爾",
-            "CHARLIE": "查理", "MICO": "米可", "KIT": "基特", "LARRY & LAWRIE": "賴瑞與萊瑞", "ANGELO": "安杰洛",
-            "BERRY": "貝瑞", "SHADE": "希德", "MEEPLE": "瞇寶", "MAISIE": "梅西"
+            "SHELLY": "雪莉", "COLT": "柯爾特", "BULL": "狂牛", "BROCK": "布洛克", "RICO": "彈射", "SPIKE": "史派克",
+            "BARLEY": "保力", "JESSIE": "潔西", "NITA": "妮塔", "DYNAMIKE": "爆破麥克", "EL PRIMO": "艾爾普里莫",
+            "MORTIS": "莫提斯", "CROW": "鴉", "POCO": "波可", "BO": "鷹獵人 爆", "PIPER": "小辣椒", "PAM": "帕姆", "TARA": "塔拉",
+            "DARRYL": "達里爾", "PENNY": "佩妮", "FRANK": "法蘭克", "GENE": "吉恩", "TICK": "滴答", "LEON": "里昂",
+            "ROSA": "蘿莎", "CARL": "卡爾", "嗶嗶": "", "8-BIT": "比特八號", "SANDY": "沙迪", "BEA": "碧兒",
+            "EMZ": "艾咪", "MR. P": "MR. P", "MAX": "麥克絲", "JACKY": "賈姬", "GALE": "格爾", "NANI": "納尼",
+            "SPROUT": "芽芽", "SURGE": "奔騰", "COLETTE": "葛蕾特", "AMBER": "安珀", "LOU": "阿魯", "BYRON": "拜倫",
+            "EDGAR": "艾德加", "RUFFS": "拉夫", "STU": "駛徒", "BELLE": "蓓爾", "SQUEAK": "斯威克", "GROM": "格羅姆",
+            "BUZZ": "霸子", "GRIFF": "格里夫", "ASH": "阿信", "MEG": "梅格", "LOLA": "蘿拉", "FANG": "范", "EVE": "伊芙",
+            "JANET": "珍娜", "BONNIE": "邦妮", "OTIS": "歐提斯", "SAM": "山姆", "GUS": "格斯", "CHESTER": "查斯特",
+            "GRAY": "葛雷特", "MANDY": "曼蒂", "WILLOW": "葳洛", "HANK": "漢克", "DOUG": "道格", "PEARL": "珀爾",
+            "CHARLIE": "查莉", "MICO": "米可", "KIT": "凱特", "LARRY & LAWRIE": "賴瑞與羅瑞", "ANGELO": "安傑洛",
+            "BERRY": "貝瑞", "SHADE": "謝德", "MEEPLE": "瞇寶", "MAISIE": "麥希"
         };
 
         const brawlerRarities = [
-            // 初始英雄 (Common) -> 對應為 Rarity_StarrRoad
-            { name: "SHELLY", rarity: "Rarity_StarrRoad" },
-            // 稀有 (Rare)
-            { name: "NITA", rarity: "Rarity_Rare" },
-            { name: "BULL", rarity: "Rarity_Rare" },
-            { name: "COLT", rarity: "Rarity_Rare" },
-            { name: "BROCK", rarity: "Rarity_Rare" },
-            { name: "EL PRIMO", rarity: "Rarity_Rare" },
-            { name: "POCO", rarity: "Rarity_Rare" },
-            { name: "BARLEY", rarity: "Rarity_Rare" },
-            { name: "ROSA", rarity: "Rarity_Rare" },
-            // 超稀有 (Super Rare)
-            { name: "JESSIE", rarity: "Rarity_SuperRare" },
-            { name: "DYNAMIKE", rarity: "Rarity_SuperRare" },
-            { name: "8-BIT", rarity: "Rarity_SuperRare" },
-            { name: "RICO", rarity: "Rarity_SuperRare" },
-            { name: "CARL", rarity: "Rarity_SuperRare" },
-            { name: "JACKY", rarity: "Rarity_SuperRare" },
-            { name: "TICK", rarity: "Rarity_SuperRare" },
-            { name: "PENNY", rarity: "Rarity_SuperRare" },
-            { name: "DARRYL", rarity: "Rarity_SuperRare" },
-            { name: "GUS", rarity: "Rarity_SuperRare" },
-            // 史詩 (Epic)
-            { name: "BO", rarity: "Rarity_Epic" },
-            { name: "EMZ", rarity: "Rarity_Epic" },
-            { name: "STU", rarity: "Rarity_Epic" },
-            { name: "PIPER", rarity: "Rarity_Epic" },
-            { name: "PAM", rarity: "Rarity_Epic" },
-            { name: "FRANK", rarity: "Rarity_Epic" },
-            { name: "BIBI", rarity: "Rarity_Epic" },
-            { name: "BEA", rarity: "Rarity_Epic" },
-            { name: "GALE", rarity: "Rarity_Epic" },
-            { name: "COLETTE", rarity: "Rarity_Epic" },
-            { name: "BELLE", rarity: "Rarity_Epic" },
-            { name: "ASH", rarity: "Rarity_Epic" },
-            { name: "LOLA", rarity: "Rarity_Epic" },
-            { name: "SAM", rarity: "Rarity_Epic" },
-            { name: "MANDY", rarity: "Rarity_Epic" },
-            { name: "MAISIE", rarity: "Rarity_Epic" },
-            { name: "HANK", rarity: "Rarity_Epic" },
-            { name: "PEARL", rarity: "Rarity_Epic" },
-            { name: "LARRY & LAWRIE", rarity: "Rarity_Epic" },
-            { name: "ANGELO", rarity: "Rarity_Epic" },
-            { name: "MOE", rarity: "Rarity_Epic" },
-            { name: "CHUCK", rarity: "Rarity_Epic" },
-            { name: "CHARLIE", rarity: "Rarity_Epic" },
-            { name: "GRAY", rarity: "Rarity_Epic" },
-            { name: "FANG", rarity: "Rarity_Epic" },
-            { name: "EVE", rarity: "Rarity_Epic" },
-            { name: "JANET", rarity: "Rarity_Epic" },
-            { name: "OTIS", rarity: "Rarity_Epic" },
-            { name: "GRIFF", rarity: "Rarity_Epic" },
-            { name: "GROM", rarity: "Rarity_Epic" },
-            { name: "SQUEAK", rarity: "Rarity_Epic" },
-            { name: "SPROUT", rarity: "Rarity_Epic" },
-            { name: "APPLE", rarity: "Rarity_Epic" },
-            // 傳奇 (Legendary)
-            { name: "AMBER", rarity: "Rarity_Legendary" },
-            { name: "KENJI", rarity: "Rarity_Legendary" },
-            { name: "LEON", rarity: "Rarity_Legendary" },
-            { name: "CROW", rarity: "Rarity_Legendary" },
-            { name: "SPIKE", rarity: "Rarity_Legendary" },
-            { name: "SANDY", rarity: "Rarity_Legendary" },
-            { name: "KIT", rarity: "Rarity_Legendary" },
-            { name: "CORDELIUS", rarity: "Rarity_Legendary" },
-            { name: "CHESTER", rarity: "Rarity_Legendary" },
-            { name: "DRACO", rarity: "Rarity_Legendary" },
-            { name: "SUZIE", rarity: "Rarity_Legendary" },
-            // 超傳奇 (Ultra Legendary) -> 對應為 Rarity_UltraLegendary
-            { name: "KAZE", rarity: "Rarity_UltraLegendary" }
+            {
+                name: "SHELLY",
+                rarity: "Rarity_StarrRoad"
+            },
+            {
+                name: "NITA",
+                rarity: "Rarity_Rare"
+            },
+            {
+                name: "BULL",
+                rarity: "Rarity_Rare"
+            },
+            {
+                name: "COLT",
+                rarity: "Rarity_Rare"
+            },
+            {
+                name: "BROCK",
+                rarity: "Rarity_Rare"
+            },
+            {
+                name: "EL PRIMO",
+                rarity: "Rarity_Rare"
+            },
+            {
+                name: "POCO",
+                rarity: "Rarity_Rare"
+            },
+            {
+                name: "BARLEY",
+                rarity: "Rarity_Rare"
+            },
+            {
+                name: "ROSA",
+                rarity: "Rarity_Rare"
+            },
+            {
+                name: "JESSIE",
+                rarity: "Rarity_SuperRare"
+            },
+            {
+                name: "DYNAMIKE",
+                rarity: "Rarity_SuperRare"
+            },
+            {
+                name: "8-BIT",
+                rarity: "Rarity_SuperRare"
+            },
+            {
+                name: "RICO",
+                rarity: "Rarity_SuperRare"
+            },
+            {
+                name: "CARL",
+                rarity: "Rarity_SuperRare"
+            },
+            {
+                name: "JACKY",
+                rarity: "Rarity_SuperRare"
+            },
+            {
+                name: "TICK",
+                rarity: "Rarity_SuperRare"
+            },
+            {
+                name: "PENNY",
+                rarity: "Rarity_SuperRare"
+            },
+            {
+                name: "DARRYL",
+                rarity: "Rarity_SuperRare"
+            },
+            {
+                name: "GUS",
+                rarity: "Rarity_SuperRare"
+            },
+            {
+                name: "BO",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "EMZ",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "STU",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "PIPER",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "PAM",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "FRANK",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "BIBI",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "BEA",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "GALE",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "COLETTE",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "BELLE",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "ASH",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "LOLA",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "SAM",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "MANDY",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "MAISIE",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "HANK",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "PEARL",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "LARRY & LAWRIE",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "ANGELO",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "MOE",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "CHUCK",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "CHARLIE",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "GRAY",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "FANG",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "EVE",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "JANET",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "BONNIE",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "OTIS",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "GRIFF",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "GROM",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "SQUEAK",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "SPROUT",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "APPLE",
+                rarity: "Rarity_Epic"
+            },
+            {
+                name: "AMBER",
+                rarity: "Rarity_Legendary"
+            },
+            {
+                name: "KENJI",
+                rarity: "Rarity_Legendary"
+            },
+            {
+                name: "LEON",
+                rarity: "Rarity_Legendary"
+            },
+            {
+                name: "CROW",
+                rarity: "Rarity_Legendary"
+            },
+            {
+                name: "SPIKE",
+                rarity: "Rarity_Legendary"
+            },
+            {
+                name: "SANDY",
+                rarity: "Rarity_Legendary"
+            },
+            {
+                name: "KIT",
+                rarity: "Rarity_Legendary"
+            },
+            {
+                name: "CORDELIUS",
+                rarity: "Rarity_Legendary"
+            },
+            {
+                name: "CHESTER",
+                rarity: "Rarity_Legendary"
+            },
+            {
+                name: "DRACO",
+                rarity: "Rarity_Legendary"
+            },
+            {
+                name: "SUZIE",
+                rarity: "Rarity_Legendary"
+            },
+            {
+                name: "KAZE",
+                rarity: "Rarity_UltraLegendary"
+            }
         ];
 
         const rarityOrder = [
@@ -257,6 +516,7 @@
             'Rarity_Rare',
             'Rarity_SuperRare',
             'Rarity_Epic',
+            'Rarity_Mythic',
             'Rarity_Legendary',
             'Rarity_UltraLegendary'
         ];
@@ -271,6 +531,8 @@
         let brawlerData = [];
         let wanttoTrp = 550;
         let isChinese = true;
+        let lastBrawlerData = {};
+        let myChartInstance;
 
         const trophySlider = document.getElementById("trophySlider");
         const trophyValueSpan = document.getElementById("trophyValue");
@@ -284,13 +546,10 @@
         });
 
         function renderBrawlers(brawlers) {
-            console.log(brawlers);
-
             container.innerHTML = "";
             let totalTrophies = 0;
             let totalTrophiesToTarget = 0;
 
-            // 1. 從 localStorage 讀取上次的總獎盃數
             const lastTrophiesString = localStorage.getItem('lastQueriedTrophies');
             const lastTrophies = lastTrophiesString ? parseInt(lastTrophiesString, 10) : null;
 
@@ -299,22 +558,67 @@
                 const trophiesNeeded = b.trophies < wanttoTrp ? wanttoTrp - b.trophies : 0;
                 totalTrophiesToTarget += trophiesNeeded;
 
-                const card = document.createElement("div");
-                const rarityClass = getRarityClassName(b.name);
-                card.className = `brawler-card ${rarityClass}`;
-
                 const brawlerNameDisplay = isChinese ? (brawlers_luanguages[b.name.toUpperCase()] || b.name) : b.name;
+                const rarityClass = getRarityClassName(b.name);
 
-                card.innerHTML = `
-                    <div class="text-center brawler-name">${brawlerNameDisplay}</div>
-                    <div class="text-center brawler-info">最高獎盃: ${b.highestTrophies}</div>
-                    <div class="text-center brawler-info">獎盃: ${b.trophies}</div>
-                    <div class="text-center brawler-info">到 ${wanttoTrp} 還需: ${trophiesNeeded}</div>
+                let trophyDifferenceText = "";
+                let trophyDiff = 0;
+                if (lastBrawlerData[b.name]) {
+                    trophyDiff = b.trophies - lastBrawlerData[b.name];
+                    const sign = trophyDiff >= 0 ? '+' : '';
+                    const diffClass = trophyDiff > 0 ? 'positive' : (trophyDiff < 0 ? 'negative' : 'zero');
+                    if (trophyDiff !== 0) {
+                        trophyDifferenceText = `<span class="trophy-diff ${diffClass}">(${sign}${trophyDiff})</span>`;
+                    }
+                }
+
+                const cardContainer = document.createElement("div");
+                cardContainer.className = "brawler-card-container";
+
+                cardContainer.innerHTML = `
+                    <div class="brawler-card brawler-card-front ${rarityClass}">
+                        <div class="text-center brawler-name ${trophyDiff != 0 ? 'h1' : 'h3'}">${brawlerNameDisplay}${trophyDifferenceText}</div>
+                        <div class="text-center brawler-info">最高獎盃: ${b.highestTrophies}</div>
+                        <div class="text-center brawler-info">獎盃: ${b.trophies} </div>
+                        <div class="text-center brawler-info">到 ${wanttoTrp} 還需: ${trophiesNeeded}</div>
+                    </div>
+                    <div class="brawler-card brawler-card-back ${rarityClass}">
+                        <h5 class="text-center text-white mt-2">${brawlerNameDisplay} 獎盃趨勢</h5>
+                        <canvas class="brawler-chart" data-brawler-name="${b.name}"></canvas>
+                    </div>
                 `;
-                container.appendChild(card);
+
+                container.appendChild(cardContainer);
+
+                cardContainer.addEventListener('dblclick', () => {
+                    cardContainer.classList.toggle('flipped');
+                    if (cardContainer.classList.contains('flipped')) {
+                        const brawlerHistoryKey = `trophyHistory_${$("#player_id").val()}_${b.name}`;
+                        const brawlerHistory = JSON.parse(localStorage.getItem(brawlerHistoryKey)) || [];
+
+                        const canvas = cardContainer.querySelector('.brawler-chart');
+                        if (brawlerHistory.length > 1) {
+                            drawBrawlerChart(canvas, brawlerHistory);
+                        } else {
+                            const ctx = canvas.getContext('2d');
+                            if (Chart.getChart(canvas)) {
+                                Chart.getChart(canvas).destroy();
+                            }
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            ctx.font = '12px Arial';
+                            ctx.fillStyle = 'white';
+                            ctx.textAlign = 'center';
+                            ctx.fillText('無足夠歷史資料', canvas.width / 2, canvas.height / 2);
+                        }
+                    } else {
+                        const chartInstance = Chart.getChart(cardContainer.querySelector('.brawler-chart'));
+                        if (chartInstance) {
+                            chartInstance.destroy();
+                        }
+                    }
+                });
             });
 
-            // 2. 計算獎盃數差異並準備顯示字串
             let differenceText = "";
             if (lastTrophies !== null) {
                 const trophyDifference = totalTrophies - lastTrophies;
@@ -325,20 +629,190 @@
 
             $("#basic_info_1").html(`
                 <h2 class="text-center">現在的盃數: ${totalTrophies}${differenceText}</h2>
-                <h3 class="text-center">全部爬到${wanttoTrp}:${totalTrophies + totalTrophiesToTarget}</h3>
+                <h3 class="text-center">全部爬到${wanttoTrp}:${totalTrophiesToTarget == 0 ? "目標已達成!!" : totalTrophies + totalTrophiesToTarget}</h3>
             `);
 
-            // 3. 將本次的總獎盃數儲存到 localStorage
+            const currentBrawlerTrophies = {};
+            brawlers.forEach(b => {
+                currentBrawlerTrophies[b.name] = b.trophies;
+            });
+            localStorage.setItem('lastBrawlerTrophies', JSON.stringify(currentBrawlerTrophies));
             localStorage.setItem('lastQueriedTrophies', totalTrophies);
         }
 
-        btnFetch.addEventListener("click", () => {
+        function drawChart(historyData) {
+            if (!historyData || historyData.length <= 1) {
+                $("#chart-container").addClass("d-none");
+                return;
+            }
+
+            $("#chart-container").removeClass("d-none");
+
+            const dates = historyData.map(item => new Date(item.timestamp).toLocaleString());
+            const trophies = historyData.map(item => item.totalTrophies);
+            const minTrophy = Math.min(...trophies);
+            const maxTrophy = Math.max(...trophies);
+
+            if (myChartInstance) {
+                myChartInstance.destroy();
+            }
+
+            const ctx = document.getElementById('trophyChart').getContext('2d');
+            myChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: '總獎盃數',
+                        data: trophies,
+                        borderColor: '#ED1C24',
+                        tension: 0.1,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            min: minTrophy - 20,
+                            max: maxTrophy + 20,
+                            title: {
+                                display: true,
+                                text: '總獎盃數'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '時間'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function drawBrawlerChart(canvas, historyData) {
+            const labels = historyData.map(item => new Date(item.timestamp).toLocaleString());
+            const data = historyData.map(item => item.trophies);
+
+            if (data.length <= 1) {
+                const ctx = canvas.getContext('2d');
+                if (Chart.getChart(canvas)) {
+                    Chart.getChart(canvas).destroy();
+                }
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.font = '12px Arial';
+                ctx.fillStyle = 'white';
+                ctx.textAlign = 'center';
+                ctx.fillText('無足夠歷史資料', canvas.width / 2, canvas.height / 2);
+                return;
+            }
+
+            // 根據獎盃變動來設定顏色和點標記
+            const pointBackgroundColors = [];
+            const pointBorderColors = [];
+
+            for (let i = 0; i < data.length; i++) {
+                if (i > 0) {
+                    const diff = data[i] - data[i - 1];
+                    if (diff > 0) {
+                        pointBackgroundColors.push('green');
+                        pointBorderColors.push('green');
+                    } else if (diff < 0) {
+                        pointBackgroundColors.push('red');
+                        pointBorderColors.push('red');
+                    } else {
+                        pointBackgroundColors.push('gray');
+                        pointBorderColors.push('gray');
+                    }
+                } else {
+                    pointBackgroundColors.push('white');
+                    pointBorderColors.push('white');
+                }
+            }
+
+            const segmentColors = historyData.map((item, index) => {
+                if (index === 0) return 'white';
+                const diff = item.trophies - historyData[index - 1].trophies;
+                return diff > 0 ? 'green' : (diff < 0 ? 'red' : 'gray');
+            });
+
+            const chartInstance = Chart.getChart(canvas);
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            const minTrophy = Math.min(...data);
+            const maxTrophy = Math.max(...data);
+
+            new Chart(canvas, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '獎盃數',
+                        data: data,
+                        borderColor: 'white',
+                        segment: {
+                            borderColor: (ctx) => {
+                                const index = ctx.p0DataIndex;
+                                return index >= 0 && index < segmentColors.length ? segmentColors[index + 1] : undefined;
+                            }
+                        },
+                        tension: 0.1,
+                        fill: false,
+                        pointBackgroundColor: pointBackgroundColors,
+                        pointBorderColor: pointBorderColors,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            min: minTrophy - 10,
+                            max: maxTrophy + 10,
+                            ticks: {
+                                color: 'white'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: 'white'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+
+        function fetchPlayerData() {
             $("#search_result").removeClass("d-none")
-            $("#player_name").text(""); // 先清空玩家名稱，讓滾動效果更明顯
+            $("#player_name").text("");
             container.innerHTML = "";
             $("#basic_info_1").html("");
 
             let id = $("#player_id").val();
+
+            const lastBrawlerDataString = localStorage.getItem('lastBrawlerTrophies');
+            if (lastBrawlerDataString) {
+                lastBrawlerData = JSON.parse(lastBrawlerDataString);
+            }
 
             fetch(`http://localhost:3000/player/${id}`)
                 .then(res => {
@@ -351,15 +825,56 @@
                     console.log(data);
 
                     if (data.brawlers && Array.isArray(data.brawlers)) {
-                        // 更新預先存在的h1標籤的文字內容
                         $("#player_name").text(data.name);
 
-                        brawlerData = data.brawlers;
+                        brawlerData = data.brawlers.map(brawler => {
+                            const lastTrophies = lastBrawlerData[brawler.name] || brawler.trophies;
+                            brawler.trophy_diff = brawler.trophies - lastTrophies;
+                            return brawler;
+                        });
+
+                        brawlerData.forEach(brawler => {
+                            const brawlerHistoryKey = `trophyHistory_${id}_${brawler.name}`;
+                            const brawlerHistory = JSON.parse(localStorage.getItem(brawlerHistoryKey)) || [];
+                            const lastTrophyEntry = brawlerHistory.length > 0 ? brawlerHistory[brawlerHistory.length - 1] : null;
+
+                            // 只有在獎盃數有變動時才新增記錄
+                            if (!lastTrophyEntry || lastTrophyEntry.trophies !== brawler.trophies) {
+                                brawlerHistory.push({
+                                    timestamp: new Date().getTime(),
+                                    trophies: brawler.trophies,
+                                });
+                                if (brawlerHistory.length > 50) {
+                                    brawlerHistory.shift();
+                                }
+                                localStorage.setItem(brawlerHistoryKey, JSON.stringify(brawlerHistory));
+                            }
+                        });
+
                         renderBrawlers(brawlerData);
 
-                        // *** 修改後的滾動程式碼，放在這裡才會生效！ ***
-                        // 在內容更新完成後，再滾動到 basic_info_0 區塊
-                        document.getElementById('basic_info_0').scrollIntoView({ behavior: 'smooth' });
+                        const totalTrophies = data.trophies;
+                        const historyKey = `trophyHistory_${id}`;
+                        const historyData = JSON.parse(localStorage.getItem(historyKey)) || [];
+                        const lastTrophyEntry = historyData.length > 0 ? historyData[historyData.length - 1] : null;
+
+                        // 只有在總獎盃數有變動時才新增記錄
+                        if (!lastTrophyEntry || lastTrophyEntry.totalTrophies !== totalTrophies) {
+                            historyData.push({
+                                timestamp: new Date().getTime(),
+                                totalTrophies: totalTrophies,
+                            });
+                            if (historyData.length > 50) {
+                                historyData.shift();
+                            }
+                            localStorage.setItem(historyKey, JSON.stringify(historyData));
+                        }
+
+                        drawChart(historyData);
+
+                        document.getElementById('basic_info_0').scrollIntoView({
+                            behavior: 'smooth'
+                        });
 
                     } else {
                         throw new Error('API 回應格式錯誤，請稍後再試。');
@@ -368,7 +883,21 @@
                 .catch(err => {
                     container.innerHTML = `<p style="color:red;">${err.message}</p>`;
                 });
+        }
+
+        btnFetch.addEventListener("click", () => {
+            fetchPlayerData();
         });
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            fetchPlayerData();
+
+            setInterval(() => {
+                console.log('正在執行每小時自動查詢...');
+                fetchPlayerData();
+            }, 1000 * 60 * 60);
+        });
+
         document.getElementById("languageSwitch").addEventListener("change", (event) => {
             isChinese = event.target.checked;
             if (brawlerData.length > 0) {
@@ -384,10 +913,10 @@
 
                 if (sortOrder === 'desc') {
                     event.target.dataset.sortOrder = 'asc';
-                    event.target.textContent = `按${sortKey === 'trophies' ? '獎盃' : (sortKey === 'highestTrophies' ? '最高獎盃' : '稀有度')}排序 ↑`;
+                    event.target.textContent = `按${getSortButtonText(sortKey)} ↑`;
                 } else {
                     event.target.dataset.sortOrder = 'desc';
-                    event.target.textContent = `按${sortKey === 'trophies' ? '獎盃' : (sortKey === 'highestTrophies' ? '最高獎盃' : '稀有度')}排序 ↓`;
+                    event.target.textContent = `按${getSortButtonText(sortKey)} ↓`;
                 }
 
                 brawlerData.sort((a, b) => {
@@ -398,6 +927,12 @@
                         const indexB = rarityOrder.indexOf(rarityB);
                         let comparison = indexA - indexB;
                         return sortOrder === 'desc' ? comparison * -1 : comparison;
+                    } else if (sortKey === 'trophy_diff') {
+                        let comparison = Math.abs(b[sortKey]) - Math.abs(a[sortKey]);
+                        if (comparison === 0) {
+                            return b.trophies - a.trophies;
+                        }
+                        return comparison;
                     } else {
                         let comparison = a[sortKey] - b[sortKey];
                         return sortOrder === 'desc' ? comparison * -1 : comparison;
@@ -407,6 +942,21 @@
                 renderBrawlers(brawlerData);
             });
         });
+
+        function getSortButtonText(key) {
+            switch (key) {
+                case 'trophies':
+                    return '獎盃';
+                case 'highestTrophies':
+                    return '最高獎盃';
+                case 'rarity':
+                    return '稀有度';
+                case 'trophy_diff':
+                    return '變動';
+                default:
+                    return '';
+            }
+        }
     </script>
 </body>
 
