@@ -181,6 +181,28 @@
         .trophy-diff.zero {
             color: #f8f9fa;
         }
+
+        /* 這裡就是控制長條圖滾動的 CSS */
+        .chart-scroll-wrapper {
+            max-height: 500px;
+            /* 控制容器最大高度，大約可以顯示 10-12 個長條 */
+            overflow-y: scroll;
+            /* 當內容超出時，啟用垂直捲動 */
+            position: relative;
+        }
+
+        .chart-scroll-wrapper::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chart-scroll-wrapper::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 4px;
+        }
+
+        .chart-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 
@@ -218,7 +240,7 @@
             <div id="trophy-slider-container" class="mt-3">
                 <label for="trophySlider">目標獎盃數: </label>
                 <span id="trophyValue">550</span>
-                <input type="range" class="form-range w-50" id="trophySlider" min="200" max="2000" value="550">
+                <input type="range" class="form-range w-50" id="trophySlider" min="250" max="2000" value="550">
             </div>
         </div>
 
@@ -228,6 +250,16 @@
             <hr>
             <h2 class="text-center">總獎盃歷史記錄</h2>
             <canvas id="trophyChart"></canvas>
+
+            <hr>
+            <h2 class="text-center mt-5">各角色獎盃長條圖</h2>
+            <div id="brawlers-bar-chart-wrapper" class=" chart-scroll-wrapper">
+                <canvas id="brawlersBarChart"></canvas>
+            </div>
+            <button id="prevPage">上一頁</button>
+            <button id="nextPage">下一頁</button>
+            <canvas id="brawlersBarChart"></canvas>
+
         </div>
     </div>
 
@@ -709,7 +741,6 @@
                 return;
             }
 
-            // 根據獎盃變動來設定顏色和點標記
             const pointBackgroundColors = [];
             const pointBorderColors = [];
 
@@ -800,6 +831,100 @@
             });
         }
 
+        // 新增的長條圖繪製函式
+        function drawBrawlersBarChart(brawlers) {
+            const labels = [];
+            const currentTrophies = [];
+            const highestTrophies = [];
+            const barColors = [];
+            const fadedBarColors = [];
+
+            const rarityColors = {
+                'Rarity_StarrRoad': 'rgba(93, 147, 51, 1)',
+                'Rarity_Rare': 'rgba(85, 178, 215, 1)',
+                'Rarity_SuperRare': 'rgba(146, 83, 198, 1)',
+                'Rarity_Epic': 'rgba(209, 86, 100, 1)',
+                'Rarity_Mythic': 'rgba(216, 142, 0, 1)',
+                'Rarity_Legendary': 'rgba(255, 222, 31, 1)',
+                'Rarity_UltraLegendary': 'rgba(85, 85, 85, 1)'
+            };
+
+            brawlers.forEach(brawler => {
+                const brawlerNameDisplay = isChinese ? (brawlers_luanguages[brawler.name.toUpperCase()] || brawler.name) : brawler.name;
+                const rarity = getRarityClassName(brawler.name);
+                const color = rarityColors[rarity] || rarityColors['Rarity_StarrRoad'];
+
+                labels.push(brawlerNameDisplay);
+                currentTrophies.push(brawler.trophies);
+                highestTrophies.push(brawler.highestTrophies);
+                barColors.push(color);
+                fadedBarColors.push(color.replace('1)', '0.4)'));
+            });
+
+            const ctx = document.getElementById('brawlersBarChart').getContext('2d');
+            let brawlersBarChartInstance = Chart.getChart(ctx);
+            if (brawlersBarChartInstance) {
+                brawlersBarChartInstance.destroy();
+            }
+
+            // 動態計算並設定 Canvas 高度
+            // 每個長條約佔 30px，加上一些額外空間
+            const chartHeight = brawlers.length * 30 + 50;
+            ctx.canvas.style.height = `${chartHeight}px`;
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '歷史最高獎盃',
+                        data: highestTrophies,
+                        backgroundColor: fadedBarColors,
+                        borderColor: barColors,
+                        borderWidth: 1,
+                    }, {
+                        label: '目前獎盃',
+                        data: currentTrophies,
+                        backgroundColor: barColors,
+                        borderColor: barColors,
+                        borderWidth: 1,
+                    }]
+                },
+                options: {
+                    indexAxis: 'x', // 長條圖水平顯示
+                    responsive: true,
+                    maintainAspectRatio: false, // 關閉此選項以手動控制高度
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#333'
+                            }
+                        },
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#333'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: '#333'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
 
         function fetchPlayerData() {
             $("#search_result").removeClass("d-none")
@@ -838,7 +963,6 @@
                             const brawlerHistory = JSON.parse(localStorage.getItem(brawlerHistoryKey)) || [];
                             const lastTrophyEntry = brawlerHistory.length > 0 ? brawlerHistory[brawlerHistory.length - 1] : null;
 
-                            // 只有在獎盃數有變動時才新增記錄
                             if (!lastTrophyEntry || lastTrophyEntry.trophies !== brawler.trophies) {
                                 brawlerHistory.push({
                                     timestamp: new Date().getTime(),
@@ -852,14 +976,17 @@
                         });
 
                         renderBrawlers(brawlerData);
+                        drawBrawlersBarChart(brawlerData);
 
                         const totalTrophies = data.trophies;
                         const historyKey = `trophyHistory_${id}`;
                         const historyData = JSON.parse(localStorage.getItem(historyKey)) || [];
                         const lastTrophyEntry = historyData.length > 0 ? historyData[historyData.length - 1] : null;
 
-                        // 只有在總獎盃數有變動時才新增記錄
                         if (!lastTrophyEntry || lastTrophyEntry.totalTrophies !== totalTrophies) {
+                            console.log('更新時間');
+                            console.log(new Date().getTime());
+
                             historyData.push({
                                 timestamp: new Date().getTime(),
                                 totalTrophies: totalTrophies,
@@ -902,45 +1029,8 @@
             isChinese = event.target.checked;
             if (brawlerData.length > 0) {
                 renderBrawlers(brawlerData);
+                drawBrawlersBarChart(brawlerData); // 確保切換語言時也更新圖表
             }
-        });
-
-        document.querySelectorAll('.btn-sort').forEach(button => {
-            button.addEventListener('click', (event) => {
-                if (brawlerData.length === 0) return;
-                const sortKey = event.target.dataset.sortKey;
-                let sortOrder = event.target.dataset.sortOrder;
-
-                if (sortOrder === 'desc') {
-                    event.target.dataset.sortOrder = 'asc';
-                    event.target.textContent = `按${getSortButtonText(sortKey)} ↑`;
-                } else {
-                    event.target.dataset.sortOrder = 'desc';
-                    event.target.textContent = `按${getSortButtonText(sortKey)} ↓`;
-                }
-
-                brawlerData.sort((a, b) => {
-                    if (sortKey === 'rarity') {
-                        const rarityA = getRarityClassName(a.name);
-                        const rarityB = getRarityClassName(b.name);
-                        const indexA = rarityOrder.indexOf(rarityA);
-                        const indexB = rarityOrder.indexOf(rarityB);
-                        let comparison = indexA - indexB;
-                        return sortOrder === 'desc' ? comparison * -1 : comparison;
-                    } else if (sortKey === 'trophy_diff') {
-                        let comparison = Math.abs(b[sortKey]) - Math.abs(a[sortKey]);
-                        if (comparison === 0) {
-                            return b.trophies - a.trophies;
-                        }
-                        return comparison;
-                    } else {
-                        let comparison = a[sortKey] - b[sortKey];
-                        return sortOrder === 'desc' ? comparison * -1 : comparison;
-                    }
-                });
-
-                renderBrawlers(brawlerData);
-            });
         });
 
         function getSortButtonText(key) {
@@ -957,6 +1047,83 @@
                     return '';
             }
         }
+
+        document.querySelectorAll('.btn-sort').forEach(button => {
+            button.addEventListener('click', (event) => {
+                if (brawlerData.length === 0) return;
+                const sortKey = event.target.dataset.sortKey;
+                let sortOrder = event.target.dataset.sortOrder;
+
+                if (sortOrder === 'desc') {
+                    event.target.dataset.sortOrder = 'asc';
+                    event.target.textContent = `按${getSortButtonText(sortKey)} ↑`;
+                } else {
+                    event.target.dataset.sortOrder = 'desc';
+                    event.target.textContent = `按${getSortButtonText(sortKey)} ↓`;
+                }
+
+                brawlerData.sort((a, b) => {
+                    const order = sortOrder === 'asc' ? 1 : -1;
+                    if (sortKey === 'rarity') {
+                        const rarityA = getRarityClassName(a.name);
+                        const rarityB = getRarityClassName(b.name);
+                        const rarityIndexA = rarityOrder.indexOf(rarityA);
+                        const rarityIndexB = rarityOrder.indexOf(rarityB);
+                        return (rarityIndexA - rarityIndexB) * order;
+                    } else {
+                        return (a[sortKey] - b[sortKey]) * order;
+                    }
+                });
+
+                renderBrawlers(brawlerData);
+            });
+        });
+        const pageSize = 15;
+        let currentPage = 0;
+
+        function drawBrawlersBarChart(brawlers) {
+            const start = currentPage * pageSize;
+            const end = start + pageSize;
+            const pageData = brawlers.slice(start, end);
+
+            const labels = pageData.map(b => b.name);
+            const currentTrophies = pageData.map(b => b.trophies);
+            const highestTrophies = pageData.map(b => b.highestTrophies);
+
+            const ctx = document.getElementById('brawlersBarChart').getContext('2d');
+            if (Chart.getChart(ctx)) Chart.getChart(ctx).destroy();
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: '歷史最高獎盃', data: highestTrophies, backgroundColor: 'rgba(0,0,255,0.4)' },
+                        { label: '目前獎盃', data: currentTrophies, backgroundColor: 'rgba(0,255,0,0.6)' }
+                    ]
+                },
+                options: {
+                    indexAxis: 'x',
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        // 綁定按鈕
+        document.getElementById("nextPage").addEventListener("click", () => {
+            if ((currentPage + 1) * pageSize < brawlerData.length) {
+                currentPage++;
+                drawBrawlersBarChart(brawlerData);
+            }
+        });
+        document.getElementById("prevPage").addEventListener("click", () => {
+            if (currentPage > 0) {
+                currentPage--;
+                drawBrawlersBarChart(brawlerData);
+            }
+        });
+
     </script>
 </body>
 
